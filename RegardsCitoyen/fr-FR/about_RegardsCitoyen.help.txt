@@ -1,0 +1,17 @@
+TOPIC
+    about_RegardsCitoyen
+
+SHORT DESCRIPTION
+    Ce module powershell permet d'analyzer les données de la vie politique Française, mis a disposition par "Regards Citoyen".
+LONG DESCRIPTION
+    A detailed, full description of the subject or purpose of the module.
+
+EXAMPLES
+    Get-GroupePolitique
+
+KEYWORDS
+    Get-politique
+
+SEE ALSO
+    lien Regards Citoyen
+    Lien PowerShellDistrict 
