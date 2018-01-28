@@ -44,7 +44,7 @@ foreach ($Public in $PublicFunctions){
 
 #Loading URL file
 
-$UrlFile = gci "$ScriptPath\Functions\Private\data.psd1" | Select -Expand FullName
+$UrlFile = gci "$ScriptPath\Functions\Private\RC_data.psd1" | Select -Expand FullName
 
 write-verbose "Importing Urls data file: $($urlfile)"
 $dataFile = Import-PowerShellDataFile -Path $UrlFile
