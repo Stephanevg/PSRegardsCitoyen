@@ -1,3 +1,15 @@
+Enum Parti {
+    NI = 0
+    GDR = 1
+    LFI = 2
+    LREM = 3
+    LC = 4
+    LR = 5
+    MODEM = 6
+    NG = 7
+    UAI = 8
+}
+
 Enum Sexe {
     NC = 0
     F = 1
