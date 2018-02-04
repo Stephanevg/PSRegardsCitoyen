@@ -53,7 +53,3 @@ Function Get-RCGroupePolitique {
         
     
 }
-
-Get-RCGroupePolitique -Nom NG
-
-Get-RCGroupePolitique -Nom NG -ListMembres
