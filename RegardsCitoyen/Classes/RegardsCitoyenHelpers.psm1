@@ -85,3 +85,42 @@ Class Depute{
     }
 }
 
+Class Synthese{
+    [int]$id
+    [String]$Nom
+    [String]$Groupe
+    [int]$AmendementsAdoptes
+    [int]$AmendementsProposes
+    [int]$AmendementsSignes
+    [int]$CommisionInterventions
+    [int]$CommisionPresences
+    [int]$hemicycleInterventions
+    [int]$hemicycleInterventionsCourtes
+    [int]$PropositionEcrites
+    [int]$PropositionsSignees
+    [int]$QuestionsEcrites
+    [int]$QuestionsOrales
+    [int]$Rapports
+    [int]$SemainesPresence
+   
+
+    Synthese([int]$id,[String]$Nom,[String]$Groupe,[int]$AmendementsAdoptes,[int]$AmendementsProposes,[int]$AmendementsSignes,[int]$CommisionInterventions,[int]$CommisionPresences,[int]$hemicycleInterventions,[int]$hemicycleInterventionsCourtes,[int]$PropositionEcrites,[int]$PropositionsSignees,[int]$QuestionsEcrites,[int]$QuestionsOrales,[int]$Rapports,[int]$SemainesPresence){
+        $this.id = $id
+        $this.Nom = $Nom
+        $This.Groupe = $Groupe
+        $This.AmendementsAdoptes = $AmendementsAdoptes
+        $This.AmendementsProposes = $AmendementsProposes
+        $This.AmendementsSignes = $AmendementsSignes
+        $This.CommisionInterventions = $CommisionInterventions
+        $This.CommisionPresences = $CommisionPresences
+        $This.hemicycleInterventions = $hemicycleInterventions
+        $This.hemicycleInterventionsCourtes = $hemicycleInterventionsCourtes
+        $This.PropositionEcrites = $PropositionEcrites
+        $This.PropositionsSignees = $PropositionsSignees
+        $This.QuestionsEcrites = $QuestionsEcrites
+        $This.QuestionsOrales = $QuestionsOrales
+        $This.Rapports = $Rapports
+        $This.SemainesPresence = $SemainesPresence
+    }
+    
+}
