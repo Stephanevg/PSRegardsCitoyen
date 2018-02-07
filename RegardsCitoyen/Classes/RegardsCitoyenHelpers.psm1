@@ -45,6 +45,7 @@ Class GroupePolitique {
 }
 
 Class Depute{
+    [int]$id
     [String]$Nom
     [String]$Prenom
     [Sexe]$Sexe
@@ -61,12 +62,13 @@ Class Depute{
     [String]$partirattfinancier
    
 
-    Depute([String]$Nom,[String]$Prenom,[String]$Groupe){
+    Depute([int]$id,[String]$Nom,[String]$Prenom,[String]$Groupe){
         $this.Nom = $Nom
         $This.Prenom = $Prenom
         $This.Groupe = $Groupe
     }
-    Depute([String]$Nom,[String]$Prenom,[String]$Groupe,[DateTime]$DateNaissance,[String]$LieuNaissance,[Sexe]$Sexe,[string]$nomcirco,[int]$numcirco,[int]$PlaceHemicylce,[DateTime]$DebutDeMandat,[String]$Profession,[string]$Twitter,[int]$NbMandats,[string]$partirattfinancier){
+    Depute([int]$id,[String]$Nom,[String]$Prenom,[String]$Groupe,[DateTime]$DateNaissance,[String]$LieuNaissance,[Sexe]$Sexe,[string]$nomcirco,[int]$numcirco,[int]$PlaceHemicylce,[DateTime]$DebutDeMandat,[String]$Profession,[string]$Twitter,[int]$NbMandats,[string]$partirattfinancier){
+        $this.id = $id
         $this.Nom = $Nom
         $This.Prenom = $Prenom
         $This.Groupe = $Groupe
