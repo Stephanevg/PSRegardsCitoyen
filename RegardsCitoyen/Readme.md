@@ -14,15 +14,15 @@ Les points décrivent la liste actuel des tâches à faire:
     - [X] Parametre 'ListMembre'
     - [X] Parametre 'Nom'
 - [ ] Get-RCFonctionParlementaires
-    [ ] Creer Class FonctionParlementaire
-    [ ] Methode [Depute] GetMembres() 
-    [ ] Methode [Depute] GetPresident()
+    - [ ] Creer Class FonctionParlementaire
+    - [ ] Methode [Depute] GetMembres() 
+    - [ ] Methode [Depute] GetPresident()
 - [ ] Get-RCMissionExtraParlementaires
-    [ ] Methode [Depute] GetMembres() 
-    [ ] Methode [Depute] GetPresident()
+    - [ ] Methode [Depute] GetMembres() 
+    - [ ] Methode [Depute] GetPresident()
 - [ ] Get-RCEtudesEtAmities
-    [ ] Methode [Depute] GetMembres() 
-    [ ] Methode [Depute] GetPresident()
+    - [ ] Methode [Depute] GetMembres() 
+    - [ ] Methode [Depute] GetPresident()
 - [ ] Get-RCCirconscription
 - [ ] Get-RCSenateur
 - [X] Get-RCSynthese
