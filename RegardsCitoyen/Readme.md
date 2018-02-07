@@ -9,13 +9,23 @@ Les points décrivent la liste actuel des tâches à faire:
 - [X] Get-RCDepute
     - [X] Parametre 'Nom'
     - [X] Paramtre 'Prenom'
-    - [ ] Recherche par 'Id'
+    - [X] Recherche par 'Id'
 - [X] Get-RCGroupePolitique
     - [X] Parametre 'ListMembre'
     - [X] Parametre 'Nom'
-- [ ] Get-RCOrganesParlementaires
+- [ ] Get-RCFonctionParlementaires
+    [ ] Creer Class FonctionParlementaire
+    [ ] Methode [Depute] GetMembres() 
+    [ ] Methode [Depute] GetPresident()
+- [ ] Get-RCMissionExtraParlementaires
+    [ ] Methode [Depute] GetMembres() 
+    [ ] Methode [Depute] GetPresident()
+- [ ] Get-RCEtudesEtAmities
+    [ ] Methode [Depute] GetMembres() 
+    [ ] Methode [Depute] GetPresident()
 - [ ] Get-RCCirconscription
 - [ ] Get-RCSenateur
-- [ ] Get-RCSynthese
-    - [ ] Fournir le possibilité de recupérer les données de synthèse pour un mois et une année en particulier
+- [X] Get-RCSynthese
+    - [X] Créer Class [Synthese]
+    - [X] Fournir le possibilité de recupérer les données de synthèse pour un mois et une année en particulier
 - [ ] Get-RCDonneesDebat (? Get-RCRecherche ?)
