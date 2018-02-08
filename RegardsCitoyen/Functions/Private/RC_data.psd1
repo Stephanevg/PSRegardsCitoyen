@@ -7,6 +7,7 @@
         groupeetudesetamities = "https://www.nosdeputes.fr/organismes/groupes/json"
         synthese = "https://www.nosdeputes.fr/synthese/data/json"
         Deputes = "https://www.nosdeputes.fr/deputes/json"
+        Dossiers = "https://www.nosdeputes.fr/dossiers/nom/json"
     }
     
 } 

@@ -126,3 +126,26 @@ Class Synthese{
     }
     
 }
+
+Class ProjetDeLoi {
+    [int]$id
+    [string]$Titre
+    [Datetime]$MinDate
+    [DateTime]$MaxDate
+    [int]$NbInterventions
+    [Depute[]]$Intervenants
+    [String]$Seances
+    [String[]]$Documents
+    [String[]]$SousSection
+    [String[]]$Sceances
+
+    ProjetDeLoi([int]$id,[String]$Titre,[int]$NbInterventions,[DateTime]$minDate,[DateTime]$MaxDate){
+        $this.id = $id
+        $this.Titre = $Titre
+        $this.NbInterventions = $NbInterventions
+        $this.MinDate = $minDate
+        $this.MaxDate = $MaxDate
+        
+    }
+
+}
