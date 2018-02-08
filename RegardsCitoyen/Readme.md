@@ -29,3 +29,11 @@ Les points décrivent la liste actuel des tâches à faire:
     - [X] Créer Class [Synthese]
     - [X] Fournir le possibilité de recupérer les données de synthèse pour un mois et une année en particulier
 - [ ] Get-RCDonneesDebat (? Get-RCRecherche ?)
+- [ ] Get-RCProjetDeLoi -> http://www.assemblee-nationale.fr/15/documents/index-dossier.asp
+    - [X] Parametre ID
+- [ ] Class ProjetDeLoi
+    - [ ] GetIntervenants
+    - [ ] GetSceances
+    - [ ] GetDocuments
+    - [ ] GetSousSections
+- [ ] Get-RCSceances -> https://2012-2017.nosdeputes.fr/14/seances/1005/xml,https://www.nosdeputes.fr/15/seance/752
