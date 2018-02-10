@@ -60,6 +60,9 @@ Class Depute{
     [String]$Twitter
     [int]$NombreDeMandats
     [String]$partirattfinancier
+    [Mandat[]]$autresmandats
+    [String[]]$Collaborateurs
+    [String[]]$Emails
    
 
     Depute([int]$id,[String]$Nom,[String]$Prenom,[String]$Groupe){
@@ -67,7 +70,7 @@ Class Depute{
         $This.Prenom = $Prenom
         $This.Groupe = $Groupe
     }
-    Depute([int]$id,[String]$Nom,[String]$Prenom,[String]$Groupe,[DateTime]$DateNaissance,[String]$LieuNaissance,[Sexe]$Sexe,[string]$nomcirco,[int]$numcirco,[int]$PlaceHemicylce,[DateTime]$DebutDeMandat,[String]$Profession,[string]$Twitter,[int]$NbMandats,[string]$partirattfinancier){
+    Depute([int]$id,[String]$Nom,[String]$Prenom,[String]$Groupe,[DateTime]$DateNaissance,[String]$LieuNaissance,[Sexe]$Sexe,[string]$nomcirco,[int]$numcirco,[int]$PlaceHemicylce,[DateTime]$DebutDeMandat,[String]$Profession,[string]$Twitter,[int]$NbMandats,[string]$partirattfinancier,[Mandat[]]$autresmandats,[string[]]$Collaborateurs,[string[]]$Emails){
         $this.id = $id
         $this.Nom = $Nom
         $This.Prenom = $Prenom
@@ -83,6 +86,9 @@ Class Depute{
         $this.DebutDeMandat = $DebutDeMandat
         $this.NombreDeMandats = $NbMandats
         $this.partirattfinancier = $partirattfinancier
+        $this.autresmandats = $autresmandats
+        $this.Collaborateurs = $Collaborateurs
+        $this.Emails = $Emails
 
     }
 }
@@ -138,14 +144,78 @@ Class ProjetDeLoi {
     [String[]]$Documents
     [String[]]$SousSection
     [String[]]$Sceances
+    hidden [string]$Raw_Intervenants
+    hidden [string]$raw_Sceances
+    hidden [string[]]$raw_documents
+    hidden [string[]]$raw_soussections
 
-    ProjetDeLoi([int]$id,[String]$Titre,[int]$NbInterventions,[DateTime]$minDate,[DateTime]$MaxDate){
+
+    ProjetDeLoi([int]$id,[String]$Titre,[int]$NbInterventions,[DateTime]$minDate,[DateTime]$MaxDate,[string[]]$Raw_Intervenants,[string[]]$raw_Sceances,[string[]]$raw_documents,[string[]]$raw_soussections){
         $this.id = $id
         $this.Titre = $Titre
         $this.NbInterventions = $NbInterventions
         $this.MinDate = $minDate
         $this.MaxDate = $MaxDate
-        
+        $this.Raw_Intervenants = $Raw_Intervenants
+        $this.raw_documents = $raw_documents
+        $this.raw_Sceances = $raw_Sceances
+        $this.raw_soussections = $raw_soussections
     }
+
+
+
+}
+
+Class Intervenant : Depute{
+    Intervenant(){
+
+    }
+}
+
+Class Mandat {
+    [String]$Commune
+    [String]$Entite
+    [String]$Fonction
+
+    Mandat([String]$Commune,[String]$Entite,[String]$Fonction){
+        $this.Commune = $Commune
+        $this.Entite = $Entite
+        $This.Fonction = $Fonction
+    }
+}
+
+Class Circonscription {
+    $Nom
+    $Num
+
+    Circonscription ([String]$Nom,[Int]$Num){
+        $this.nom = $Nom
+        $this.num = $Num
+    }
+}
+
+Class Intervention {
+    [int]$seance_id
+    [string]$seance_titre
+    [string]$seance_lieu
+    [Datetime]$date
+    [Datetime]$heure
+    [String]$type
+    [Datetime]$timestamp
+    [String]$section
+    [String]$soussection
+    [String]$intervenant_nom
+    [String]$intervenant_fonction
+    [String]$intervenant_slug
+    [String]$intervenant_groupe
+    [int]$nbmots
+    [String]$contenu
+    [String]$tags
+    [String]$amendements
+    [String]$lois
+    [String]$source
+    [String]$url_nosdeputes
+    [String]$url_nosdeputes_api
+    [int]$id
 
 }
