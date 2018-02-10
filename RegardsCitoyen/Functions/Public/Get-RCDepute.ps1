@@ -37,32 +37,108 @@ Function Get-RCDepute {
 
         [Parameter(Mandatory=$false,ParameterSetName="id")]
         [ValidateNotNullOrEmpty()]
-        [String]$id
+        [String]$id,
+
+        [Parameter(Mandatory=$false,ParameterSetName="slug")]
+        [ValidateNotNullOrEmpty()]
+        [String]$Slug
+
      
     )
 
 
     switch ($PsCmdlet.ParameterSetName) {
+        "slug"{
+            $url = $Rc_data.urls.Deputes.Replace("deputes/enmandat/json",$Slug) + "/json"
+            $entry = (Invoke-RestMethod -Uri $url).Depute
+            
+            $Collaborateurs = @()
+            foreach ($col in $entry.Collaborateurs.Collaborateur){
+                    $Collaborateurs += $col
+            }
+
+            $autresmandats = @()
+            foreach ($autreMandat in $entry.autres_mandats.mandat){
+                    $mandat = ""
+                    $mandat = $autreMandat.replace(" ","").split("/")
+                    if ($mandat){
+                        $autresmandats += [Mandat]::New($mandat[0],$mandat[1],$mandat[2])
+
+                    }
+            }
+
+            $Emails = @()
+            foreach ($mail in $entry.emails.email){
+                    $Emails += $mail
+            }
+            return [Depute]::New($entry.id,$entry.nom_de_famille,$entry.prenom,$entry.groupe_sigle,$entry.date_naissance,$entry.lieu_naissance,$entry.sexe,$entry.nom_circo,$entry.num_circo,$entry.place_en_hemicycle,$entry.mandat_debut,$entry.profession,$entry.twitter,$entry.nb_mandats,$entry.parti_ratt_financier,$autresmandats,$Collaborateurs,$Emails)
+            Break;
+        }
+
         "id"{
+
+            
+
             $Entry = (Invoke-RestMethod -Uri $RC_data.urls.deputes).deputes.depute | ? {$_.id -eq $id}
-            return [Depute]::New($entry.id,$entry.nom_de_famille,$entry.prenom,$entry.groupe_sigle,$entry.date_naissance,$entry.lieu_naissance,$entry.sexe,$entry.nom_circo,$entry.num_circo,$entry.place_en_hemicycle,$entry.mandat_debut,$entry.profession,$entry.twitter,$entry.nb_mandats,$entry.parti_ratt_financier)
+
+            $Collaborateurs = @()
+            foreach ($col in $entry.Collaborateurs.Collaborateur){
+                    $Collaborateurs += $col
+            }
+
+            $autresmandats = @()
+            foreach ($autreMandat in $entry.autres_mandats.mandat){
+                    $mandat = ""
+                    $mandat = $autreMandat.replace(" ","").split("/")
+                    if ($mandat){
+                        $autresmandats += [Mandat]::New($mandat[0],$mandat[1],$mandat[2])
+
+                    }
+            }
+
+            $Emails = @()
+            foreach ($mail in $entry.emails.email){
+                    $Emails += $mail
+            }
+
+            return [Depute]::New($entry.id,$entry.nom_de_famille,$entry.prenom,$entry.groupe_sigle,$entry.date_naissance,$entry.lieu_naissance,$entry.sexe,$entry.nom_circo,$entry.num_circo,$entry.place_en_hemicycle,$entry.mandat_debut,$entry.profession,$entry.twitter,$entry.nb_mandats,$entry.parti_ratt_financier,$autresmandats,$Collaborateurs,$Emails)
             break;
         }
         "Nom" {
                 $slug = ($prenom +"-"+ $Nom)
-                $url = ($RC_data.Urls.Deputes).Replace("deputes/json",$slug) + "/json"
+                $url = ($RC_data.Urls.Deputes).Replace("deputes/enmandat/json",$slug) + "/json"
                 
                 $Data = (Invoke-RestMethod -Uri $url).depute
                 #Depute([String]$Nom,[String]$Prenom,[String]$Groupe,[DateTime]$DateNaissance,[String]$LieuNaissance,[Sexe]$Sexe,[string]$nomcirco,[int]$numcirco,[int]$PlaceHemicylce,[DateTime]$DebutDeMandat,[String]$Profession,[string]$Twitter,[int]$NbMandats){
-                return [Depute]::New($data.id,$data.nom_de_famille,$data.prenom,$data.groupe_sigle,$data.date_naissance,$Data.lieu_naissance,$data.sexe,$data.nom_circo,$data.num_circo,$data.place_en_hemicycle,$data.mandat_debut,$data.profession,$data.twitter,$data.nb_mandats,$data.parti_ratt_financier)
+                return [Depute]::New($data.id,$data.nom_de_famille,$data.prenom,$data.groupe_sigle,$data.date_naissance,$Data.lieu_naissance,$data.sexe,$data.nom_circo,$data.num_circo,$data.place_en_hemicycle,$data.mandat_debut,$data.profession,$data.twitter,$data.nb_mandats,$data.parti_ratt_financier,$autresmandats,$Collaborateurs,$Emails)
                 break;
           }
         "All"{
             $Data = (Invoke-RestMethod -Uri $RC_data.urls.deputes).deputes.depute
-    
+            
             Foreach ($entry in $Data){
-                
-                [Depute]::New($entry.id,$entry.nom_de_famille,$entry.prenom,$entry.groupe_sigle,$entry.date_naissance,$entry.lieu_naissance,$entry.sexe,$entry.nom_circo,$entry.num_circo,$entry.place_en_hemicycle,$entry.mandat_debut,$entry.profession,$entry.twitter,$entry.nb_mandats,$entry.parti_ratt_financier)
+
+                $Collaborateurs = @()
+                foreach ($col in $entry.Collaborateurs.Collaborateur){
+                        $Collaborateurs += $col
+                }
+
+                $autresmandats = @()
+                foreach ($autreMandat in $entry.autres_mandats.mandat){
+                        $mandat = ""
+                        $mandat = $autreMandat.replace(" ","").split("/")
+                        if ($mandat){
+                            $autresmandats += [Mandat]::New($mandat[0],$mandat[1],$mandat[2])
+
+                        }
+                }
+
+                $Emails = @()
+                foreach ($mail in $entry.emails.email){
+                        $Emails += $mail
+                }
+
+                [Depute]::New($entry.id,$entry.nom_de_famille,$entry.prenom,$entry.groupe_sigle,$entry.date_naissance,$entry.lieu_naissance,$entry.sexe,$entry.nom_circo,$entry.num_circo,$entry.place_en_hemicycle,$entry.mandat_debut,$entry.profession,$entry.twitter,$entry.nb_mandats,$entry.parti_ratt_financier,$autresmandats,$Collaborateurs,$Emails)
             }
             break;
         }
@@ -75,3 +151,4 @@ Function Get-RCDepute {
 
 
 }
+Get-RCDepute -Slug gabriel-serville
