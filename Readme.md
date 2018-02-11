@@ -34,14 +34,13 @@ Les points décrivent la liste actuel des tâches à faire:
     - [ ] Parametre Full (Recuperation des données Documents, Intervenants,Seance, sousSections via ID/slug)
 - [ ] Class ProjetDeLoi
     - [ ] GetStats()
-            Retourne les statistiques d'intervention de pers ($ret.intervenants.parlementaire)
+            Retourne les statistiques d'intervention de pers ($ret.intervenants.parlementaire -> voir hidden $id_intervenants)
     - [ ] GetIntervenants
     - [ ] GetSceances
     - [ ] GetDocuments
     - [ ] GetSousSections
-- [ ] Get-RCSceances -> (invoke-restmethod https://www.nosdeputes.fr/15/seance/814/json).seance.Intervention
-    [ ] Class Sceance (Array d'interventions)
-        [ ] Prop -> [Intervention[]]
-- [ ] Class Intervention
+- [X] Get-RCSceance
+   - [X] Class Sceance (Array d'interventions)
+- [X] Class Intervention
 - [X] Class Mandat
 
