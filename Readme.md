@@ -31,9 +31,17 @@ Les points décrivent la liste actuel des tâches à faire:
 - [ ] Get-RCDonneesDebat (? Get-RCRecherche ?)
 - [ ] Get-RCProjetDeLoi -> http://www.assemblee-nationale.fr/15/documents/index-dossier.asp
     - [X] Parametre ID
+    - [ ] Parametre Full (Recuperation des données Documents, Intervenants,Seance, sousSections via ID/slug)
 - [ ] Class ProjetDeLoi
+    - [ ] GetStats()
+            Retourne les statistiques d'intervention de pers ($ret.intervenants.parlementaire)
     - [ ] GetIntervenants
     - [ ] GetSceances
     - [ ] GetDocuments
     - [ ] GetSousSections
-- [ ] Get-RCSceances -> https://2012-2017.nosdeputes.fr/14/seances/1005/xml,https://www.nosdeputes.fr/15/seance/752
+- [ ] Get-RCSceances -> (invoke-restmethod https://www.nosdeputes.fr/15/seance/814/json).seance.Intervention
+    [ ] Class Sceance (Array d'interventions)
+        [ ] Prop -> [Intervention[]]
+- [ ] Class Intervention
+- [X] Class Mandat
+
