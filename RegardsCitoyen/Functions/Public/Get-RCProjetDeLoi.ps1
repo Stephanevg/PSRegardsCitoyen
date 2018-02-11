@@ -45,10 +45,17 @@ Function Get-RCProjetDeLoi {
         "All"{
             $Data = Invoke-RestMethod -Uri $RC_data.urls.Dossiers
     
-            
             Foreach ($entry in $Data.sections.section){
                 
-                (invoke-restmethod $Entry.url_nosdeputes_api).Section
+                $ret = (invoke-restmethod $Entry.url_nosdeputes_api).Section
+
+                $id_sceances = $ret.seances.seance.id
+                $id_intervenants = $ret.intervenants.parlementaire.slug | Out-String
+                $id_soussections = $ret.soussections.soussection.id
+                $id_documents = $ret.documents.document.id
+
+                
+                [ProjetDeLoi]::New($ret.id,$ret.Titre,$ret.nb_interventions,$ret.min_date,$ret.max_date,$id_intervenants,$id_documents,$id_sceances,$id_soussections)
             }
             break;
         }
@@ -56,7 +63,7 @@ Function Get-RCProjetDeLoi {
             $urlid = $RC_data.Urls.Dossiers.replace("dossiers/nom/json",("15/dossier/" + $id + "/json"))
             $ret = (Invoke-restmethod $urlid).section
             
-            [ProjetDeLoi]::New($ret.id,$ret.Titre,$ret.nb_interventions,$ret.min_date,$ret.max_date)
+            [ProjetDeLoi]::New($ret.id,$ret.Titre,$ret.nb_interventions,$ret.min_date,$ret.max_date,$ret.intervenants,$ret.documents,$ret.seances,$ret.soussections)
             break;
         }
         Default {
@@ -69,4 +76,5 @@ Function Get-RCProjetDeLoi {
 
 }
 
-Get-RCProjetDeLoi -id 2066
+$c = Get-RCProjetDeLoi
+$c

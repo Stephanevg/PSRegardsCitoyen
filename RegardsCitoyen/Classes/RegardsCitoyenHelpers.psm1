@@ -140,26 +140,27 @@ Class ProjetDeLoi {
     [DateTime]$MaxDate
     [int]$NbInterventions
     [Depute[]]$Intervenants
+    [int[]]$IdSceances
     [String]$Seances
     [String[]]$Documents
     [String[]]$SousSection
     [String[]]$Sceances
-    hidden [string]$Raw_Intervenants
-    hidden [string]$raw_Sceances
-    hidden [string[]]$raw_documents
-    hidden [string[]]$raw_soussections
+    hidden [string[]]$Id_intervenants
+    hidden [string[]]$id_seances
+    hidden [int[]]$id_documents
+    hidden [int[]]$id_soussections
 
 
-    ProjetDeLoi([int]$id,[String]$Titre,[int]$NbInterventions,[DateTime]$minDate,[DateTime]$MaxDate,[string[]]$Raw_Intervenants,[string[]]$raw_Sceances,[string[]]$raw_documents,[string[]]$raw_soussections){
+    ProjetDeLoi([int]$id,[String]$Titre,[int]$NbInterventions,[DateTime]$minDate,[DateTime]$MaxDate,[string[]]$Id_intervenants,[String[]]$id_seances,[int[]]$id_documents,[int[]]$id_soussections){
         $this.id = $id
         $this.Titre = $Titre
         $this.NbInterventions = $NbInterventions
         $this.MinDate = $minDate
         $this.MaxDate = $MaxDate
-        $this.Raw_Intervenants = $Raw_Intervenants
-        $this.raw_documents = $raw_documents
-        $this.raw_Sceances = $raw_Sceances
-        $this.raw_soussections = $raw_soussections
+        $this.Id_intervenants = $Id_intervenants
+        $this.id_documents = $id_documents
+        $this.id_seances = $id_seances
+        $this.id_soussections = $id_soussections
     }
 
 
