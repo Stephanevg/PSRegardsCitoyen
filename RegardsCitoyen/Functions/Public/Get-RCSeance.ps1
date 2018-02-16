@@ -7,7 +7,7 @@ Function Get-RCSeance {
     Fournit la liste complete des interventions, le nom de l'intervenant etc...
     
     .PARAMETER Id
-   Permet de spécifier l'ID de la séance a récuprer.
+   Permet de lister toutes les interventions relatives a une scéeances bien particulière via le parametre ID.
     
 
     
@@ -70,7 +70,7 @@ Function Get-RCSeance {
                 foreach ($i in $ret.lois){
                     $lois += [int]$i.id
                 }
-                [Seance]::New($ret.seance_id,$ret.seance_titre,$ret.seance_Lieu,$Date,$ret.type,$ret.section,$ret.soussection,$ret.intervenant_nom,$ret.intervenant_slug,$ret.Contenu,$ret.Tags,$ret.amendements,$Lois)
+                [Intervention]::New($ret.seance_id,$ret.seance_titre,$ret.seance_Lieu,$Date,$ret.type,$ret.section,$ret.soussection,$ret.intervenant_nom,$ret.intervenant_slug,$ret.Contenu,$ret.Tags,$ret.amendements,$Lois)
                 
             }
             #[ProjetDeLoi]::New($ret.id,$ret.Titre,$ret.nb_interventions,$ret.min_date,$ret.max_date,$ret.intervenants,$ret.documents,$ret.seances,$ret.soussections)
@@ -85,5 +85,3 @@ Function Get-RCSeance {
 
 
 }
-
-#Get-RCSeance -id 234

@@ -162,8 +162,8 @@ Class ProjetDeLoi {
         $this.id_seances = $id_seances
         $this.id_soussections = $id_soussections
     }
-
-
+    
+    
 
 }
 
@@ -196,27 +196,33 @@ Class Circonscription {
 }
 
 Class Intervention {
-    [int]$seance_id
-    [string]$seance_titre
-    [string]$seance_lieu
-    [Datetime]$date
-    [Datetime]$heure
-    [String]$type
-    [Datetime]$timestamp
-    [String]$section
-    [String]$soussection
-    [String]$intervenant_nom
-    [String]$intervenant_fonction
-    [String]$intervenant_slug
-    [String]$intervenant_groupe
-    [int]$nbmots
-    [String]$contenu
-    [String]$tags
-    [String]$amendements
-    [String]$lois
-    [String]$source
-    [String]$url_nosdeputes
-    [String]$url_nosdeputes_api
     [int]$id
+    [string]$Titre
+    [String]$Lieu
+    [DateTime]$Date
+    [String]$Type
+    [String]$Section
+    [String]$SousSection
+    [String]$NomIntervenant
+    hidden [String]$slugIntervenant
+    [String]$Contenu
+    [String]$tags
+    [String]$Amendements
+    [Int[]]$Loi
 
+    Intervention ([Int]$Id,[String]$Titre,[String]$Lieu,[DateTime]$Date,[String]$Type,[String]$Section,[String]$SousSection,[String]$NomIntervenant,[String]$SlugIntervenant,[String]$Contenu,[String]$Tags,[String]$Amendements,[int[]]$Loi){
+        $this.id = $Id
+        $this.Titre = $Titre
+        $this.Lieu = $Lieu
+        $this.Date = $Date
+        $this.Type = $Type
+        $this.Section = $Section
+        $this.SousSection = $SousSection
+        $this.NomIntervenant = $NomIntervenant
+        $this.slugIntervenant = $SlugIntervenant
+        $this.Contenu = $Contenu
+        $this.tags = $Tags
+        $this.Amendements = $Amendements
+        $this.Loi = $Loi
+    }
 }
