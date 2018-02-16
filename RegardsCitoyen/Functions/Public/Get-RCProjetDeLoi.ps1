@@ -29,9 +29,6 @@ Function Get-RCProjetDeLoi {
     [cmdletBinding(DefaultParameterSetName="all")]
     Param(
 
-        [Parameter(Mandatory=$true,ParameterSetName="Nom")]
-        [String]$Nom,
-
         [Parameter(Mandatory=$false,ParameterSetName="id")]
         [ValidateNotNullOrEmpty()]
         [String]$id
@@ -63,7 +60,12 @@ Function Get-RCProjetDeLoi {
             $urlid = $RC_data.Urls.Dossiers.replace("dossiers/nom/json",("15/dossier/" + $id + "/json"))
             $ret = (Invoke-restmethod $urlid).section
             
-            [ProjetDeLoi]::New($ret.id,$ret.Titre,$ret.nb_interventions,$ret.min_date,$ret.max_date,$ret.intervenants,$ret.documents,$ret.seances,$ret.soussections)
+            $id_sceances = $ret.seances.seance.id
+                $id_intervenants = $ret.intervenants.parlementaire.slug | Out-String
+                $id_soussections = $ret.soussections.soussection.id
+                $id_documents = $ret.documents.document.id
+
+            [ProjetDeLoi]::New($ret.id,$ret.Titre,$ret.nb_interventions,$ret.min_date,$ret.max_date,$id_intervenants,$id_documents,$id_sceances,$id_soussections)
             break;
         }
         Default {
@@ -76,5 +78,4 @@ Function Get-RCProjetDeLoi {
 
 }
 
-$c = Get-RCProjetDeLoi
-$c
+Get-RCProjetDeLoi -id 488

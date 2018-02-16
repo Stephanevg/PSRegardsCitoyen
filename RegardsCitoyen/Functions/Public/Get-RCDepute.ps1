@@ -151,4 +151,3 @@ Function Get-RCDepute {
 
 
 }
-Get-RCDepute -Slug gabriel-serville

@@ -62,5 +62,3 @@ Function Get-RCSynthese {
     }
 
 }
-
-Get-RCSynthese
