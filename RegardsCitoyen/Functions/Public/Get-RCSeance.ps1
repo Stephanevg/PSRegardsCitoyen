@@ -52,7 +52,7 @@ Function Get-RCSeance {
 
         [Parameter(Mandatory=$true,ParameterSetName="id")]
         [ValidateNotNullOrEmpty()]
-        [String]$id
+        [String[]]$id
      
     )
 
@@ -60,21 +60,24 @@ Function Get-RCSeance {
     switch ($PsCmdlet.ParameterSetName) {
 
         "id"{
-            $urlid = $RC_data.Urls.Seance + $id + "/json"
-            $Interventions = Invoke-restmethod -uri $urlid -Verbose
-
-            Foreach ($ret in $Interventions.seance.intervention){
-                $DAte = ""
-                $Date = $ret.date +" "+ $ret.heure
-                $lois = @()
-                foreach ($i in $ret.lois){
-                    $lois += [int]$i.id
-                }
-                [Intervention]::New($ret.seance_id,$ret.seance_titre,$ret.seance_Lieu,$Date,$ret.type,$ret.section,$ret.soussection,$ret.intervenant_nom,$ret.intervenant_slug,$ret.Contenu,$ret.Tags,$ret.amendements,$Lois)
+            foreach ($i in $id){
+                $urlid = ""
+                $urlid = $RC_data.Urls.Seance + $i + "/json"
+                $Interventions = Invoke-restmethod -uri $urlid -Verbose
                 
+                Foreach ($ret in $Interventions.seance.intervention){
+                    $DAte = ""
+                    $Date = $ret.date +" "+ $ret.heure
+                    $lois = @()
+                    foreach ($loi in $ret.lois){
+                        $lois += [int]$loi.id
+                    }
+                    [Intervention]::New($ret.seance_id,$ret.seance_titre,$ret.seance_Lieu,$Date,$ret.type,$ret.section,$ret.soussection,$ret.intervenant_nom,$ret.intervenant_slug,$ret.Contenu,$ret.Tags,$ret.amendements,$Lois)
+                    
+                }
+                #[ProjetDeLoi]::New($ret.id,$ret.Titre,$ret.nb_interventions,$ret.min_date,$ret.max_date,$ret.intervenants,$ret.documents,$ret.seances,$ret.soussections)
+                Continue;
             }
-            #[ProjetDeLoi]::New($ret.id,$ret.Titre,$ret.nb_interventions,$ret.min_date,$ret.max_date,$ret.intervenants,$ret.documents,$ret.seances,$ret.soussections)
-            break;
         }
         Default {
             throw "Parameter set -> $($PsCmdlet.ParameterSetName) is undefined"
@@ -85,3 +88,5 @@ Function Get-RCSeance {
 
 
 }
+$w = 16,34
+Get-RCSeance -id $w | measure
