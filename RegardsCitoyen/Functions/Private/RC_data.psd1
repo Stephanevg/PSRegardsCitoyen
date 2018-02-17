@@ -9,6 +9,7 @@
         Deputes = "https://www.nosdeputes.fr/deputes/enmandat/json"
         Dossiers = "https://www.nosdeputes.fr/dossiers/nom/json"
         Seance = "https://www.nosdeputes.fr/15/seance/"
+        Intervention = "https://www.nosdeputes.fr/api/document/Intervention/"
     }
     
 } 

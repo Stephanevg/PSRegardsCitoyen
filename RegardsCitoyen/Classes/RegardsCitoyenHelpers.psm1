@@ -133,25 +133,23 @@ Class Synthese{
     
 }
 
-Class ProjetDeLoi {
+Class Dossier {
     [int]$id
     [string]$Titre
     [Datetime]$MinDate
     [DateTime]$MaxDate
     [int]$NbInterventions
     [Depute[]]$Intervenants
-    [int[]]$IdSceances
-    [String]$Seances
+    [Intervention[]]$Seances
     [String[]]$Documents
     [String[]]$SousSection
-    [String[]]$Sceances
     hidden [string[]]$Id_intervenants
     hidden [string[]]$id_seances
     hidden [int[]]$id_documents
     hidden [int[]]$id_soussections
 
 
-    ProjetDeLoi([int]$id,[String]$Titre,[int]$NbInterventions,[DateTime]$minDate,[DateTime]$MaxDate,[string[]]$Id_intervenants,[String[]]$id_seances,[int[]]$id_documents,[int[]]$id_soussections){
+    Dossier([int]$id,[String]$Titre,[int]$NbInterventions,[DateTime]$minDate,[DateTime]$MaxDate,[string[]]$Id_intervenants,[String[]]$id_seances,[int[]]$id_documents,[int[]]$id_soussections){
         $this.id = $id
         $this.Titre = $Titre
         $this.NbInterventions = $NbInterventions
@@ -163,7 +161,77 @@ Class ProjetDeLoi {
         $this.id_soussections = $id_soussections
     }
     
-    
+    hidden [Void] _LoadIntervenants(){
+        
+        write-verbose "Chargement des seances.."
+        if ($this.id_seances){
+            $inter += @()
+            foreach ($Id in $this.Id_intervenants){
+
+                $inter += Get-RCIntervenant -id $id
+
+            }
+
+            $this.Intervenants = $inter  
+        }
+    }
+
+    hidden [void] _LoadSeances(){
+        write-verbose "Chargement des seances.."
+        if ($this.id_seances){
+            $Interventions += @()
+            foreach ($id in $this.id_seances){
+
+                $Interventions += Get-RCSeance -id $id
+
+            }
+
+            $this.Seances = $Interventions  
+        }
+        
+        
+    }
+
+    hidden [Void] _LoadDocuments(){
+
+        write-verbose "Chargement des seances.."
+        if ($this.id_seances){
+            $Docs += @()
+            foreach ($id in $this.id_documents){
+
+                $Docs += Get-RCDocument -id $id
+
+            }
+
+            $this.Documents = $Docs  
+        }
+        
+        
+    }
+
+    [Void] _LoadSousSections(){
+
+        write-verbose "Chargement des seances.."
+        if ($this.id_soussections){
+            $soussec += @()
+            foreach ($id in $this.id_soussections){
+
+                $soussec += Get-RCSousSection -id $id
+
+            }
+
+            $this.SousSection = $soussec  
+        }
+         
+    }
+
+    [Dossier] Full(){
+        $this._LoadSeances()
+        $this._LoadDocuments()
+        $this._LoadIntervenants()
+        $this._LoadSousSections()
+        return $this
+    }
 
 }
 
