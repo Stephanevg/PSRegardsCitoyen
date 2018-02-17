@@ -164,7 +164,8 @@ Class Dossier {
     hidden [Void] _LoadIntervenants(){
         
         write-verbose "Chargement des seances.."
-        if ($this.Id_intervenants){
+
+        if ($this.id_seances){
             $inter += @()
             foreach ($Id in $this.Id_intervenants){
 
@@ -174,7 +175,68 @@ Class Dossier {
 
             $this.Intervenants = $inter  
         }
+
     }
+
+    hidden [void] _LoadSeances(){
+        write-verbose "Chargement des seances.."
+        if ($this.id_seances){
+            $Interventions += @()
+            foreach ($id in $this.id_seances){
+
+                $Interventions += Get-RCSeance -id $id
+
+            }
+
+            $this.Seances = $Interventions  
+        }
+        
+        
+    }
+
+    hidden [Void] _LoadDocuments(){
+
+        write-verbose "Chargement des seances.."
+        if ($this.id_seances){
+            $Docs += @()
+            foreach ($id in $this.id_documents){
+
+                $Docs += Get-RCDocument -id $id
+
+            }
+
+            $this.Documents = $Docs  
+        }
+        
+        
+    }
+
+    [Void] _LoadSousSections(){
+
+        write-verbose "Chargement des seances.."
+        if ($this.id_soussections){
+            $soussec += @()
+            foreach ($id in $this.id_soussections){
+
+                $soussec += Get-RCSousSection -id $id
+
+            }
+
+            $this.SousSection = $soussec  
+        }
+         
+    }
+
+    [Dossier] Full(){
+        $this._LoadSeances()
+        $this._LoadDocuments()
+        $this._LoadIntervenants()
+        $this._LoadSousSections()
+        return $this
+    }
+
+                
+    
 
     hidden [void] _LoadSeances(){
         write-verbose "Chargement des seances.."
