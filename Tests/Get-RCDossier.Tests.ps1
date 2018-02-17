@@ -15,25 +15,22 @@ import-module .\RegardsCitoyen -Force
 Context "Testing Regards Citoyen"{
     Describe "Get-RCDossier" {
 
-        it "Should not throw an error" {
-            {Get-RCDossier} | should not throw
+        it "Empty Param -> Should throw an error" {
+            {Get-RCDossier -id} | should throw
         }
 
-        it "Should return list of Deputes (Empty Param)" {
-            $obj = Get-RCDossier
+        it "Should return list of Deputes" {
+            $obj = Get-RCDossier -id 49
 
             $obj | should not benullorempty
 
-            $obj.count -gt 2 | should be $true
         }
 
-        it "Should return object of type 'Depute' (Empty Param)" {
-            $obj = Get-RCDossier
+        it "Should return object of type 'Depute'" {
+            $obj = Get-RCDossier -id 49
 
-            $r = Get-Random -Minimum 1 -Maximum $obj.count
-            $obj[$r].GetType().Name | should be "Dossier"
+            $obj.GetType().Name | should be "Dossier"
 
-            $obj.count -gt 2 | should be $true
         }
 
         it "Should return only one object (Param 'id' -> '1758'" {
@@ -42,18 +39,20 @@ Context "Testing Regards Citoyen"{
 
         }
 
-        it "Should return right object (Param Prenom -> 'Richard'  Nom -> 'Ferrand' )" {
-            $Richou = Get-RCDossier -id 1758
-            $Richou.Titre | should be "Lutte contre la désertification médicale"
-            $Richou.nbinterventions | should be 294
+        it "Should return right object -> Lutte contre la désertification médicale" {
+            $Doc = Get-RCDossier -id 1759
+            $Doc.Titre | should be "Discussion d'une proposition de loi"
+            
         }
 
         it "Param -> -Full: Should return complete object" {
-            $Dossier = Get-RCDossier -full
+            $Dossier = Get-RCDossier -id 123 -Full
             $Dossier.intervenants | should not benullorempty
             $Dossier.Seances | should not benullorempty
             $Dossier.Documents | should not benullorempty
-            $Dossier.SousSections | should not benullorempty
+            
+            #Il semblerais que SousSection ne soit pas encore implementer chez RegardCitoyen.
+            #$Dossier.SousSections | should not benullorempty
         }
     }
     

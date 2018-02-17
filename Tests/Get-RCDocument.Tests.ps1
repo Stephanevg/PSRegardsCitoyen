@@ -16,11 +16,11 @@ Context "Testing Regards Citoyen"{
     Describe "Get-RCDocument" {
 
         it "Should not throw an error" {
-            {Get-RCDocument} | should not throw
+            {Get-RCDocument -id 45} | should not throw
         }
 
         it "Calling with (Empty Param)" {
-            {Get-RCDocument} | should throw
+            {Get-RCDocument -id} | should throw
 
         }
 
@@ -31,14 +31,14 @@ Context "Testing Regards Citoyen"{
 
         }
 
-        it "Should return right object (Param Prenom -> 'Richard'  Nom -> 'Ferrand' )" {
-            $Richou = Get-RCDocument -id 1758
-            $Richou.Titre | should be "Lutte contre la désertification médicale"
-            $Richou.nbinterventions | should be 294
+        it "Should return right object (Param ID -> '1758')" {
+            $doc = Get-RCDocument -id 1758
+            $doc.iddossieran | should be "potentiel_systeme_apprentissage_France"
+            
         }
 
         it "Param -> -Full: Should return complete object" {
-            $Dossier = Get-RCDocument -full
+            $Dossier = Get-RCDocument -id 411
             $Dossier.id | should not benullorempty
             $Dossier.titre | should not benullorempty
             $Dossier.contenue | should not benullorempty

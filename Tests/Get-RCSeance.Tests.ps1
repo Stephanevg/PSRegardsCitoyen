@@ -15,12 +15,12 @@ import-module .\RegardsCitoyen -Force
 Context "Testing Regards Citoyen"{
     Describe "Get-RCSeance" {
 
-        it "Should not throw an error" {
-            {Get-RCSeance} | should not throw
+        it "Empty Param -> Should throw an error" {
+            {Get-RCSeance -id } | should throw
         }
 
-        it "Should return list of Interventions (Empty Param)" {
-            $obj = Get-RCSeance
+        it "Param: id 14 -> Should return list of Interventions" {
+            $obj = Get-RCSeance -id 34
 
             $obj | should not benullorempty
 
@@ -28,7 +28,7 @@ Context "Testing Regards Citoyen"{
         }
 
         it "Should return object of type 'Intervention' (Empty Param)" {
-            $obj = Get-RCSeance
+            $obj = Get-RCSeance -id 34
 
             $r = Get-Random -Minimum 1 -Maximum $obj.count
             $obj[$r].GetType().Name | should be "Intervention"
@@ -44,7 +44,7 @@ Context "Testing Regards Citoyen"{
 
         it "Should return right object type [Intervention] (Param ID -> '67' )" {
             $Id = Get-RCSeance -Id "67"
-            $id[0].Titre -eq "réunion du 19 juillet 2017 à 11h15" | should be $true
+            $id[0].getType().Name | should be "Intervention"
         }
     }
     
