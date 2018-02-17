@@ -10,6 +10,9 @@ Les points décrivent la liste actuel des tâches à faire:
     - [X] Parametre 'Nom'
     - [X] Paramtre 'Prenom'
     - [X] Recherche par 'Id'
+    - [ ] Parametre Circonscription
+    - [ ] Parametre NumDepartement
+    - [ ] Parametre NomDepartement
 - [X] Get-RCGroupePolitique
     - [X] Parametre 'ListMembre'
     - [X] Parametre 'Nom'
@@ -23,24 +26,24 @@ Les points décrivent la liste actuel des tâches à faire:
 - [ ] Get-RCEtudesEtAmities
     - [ ] Methode [Depute] GetMembres() 
     - [ ] Methode [Depute] GetPresident()
-- [ ] Get-RCCirconscription
 - [ ] Get-RCSenateur
 - [X] Get-RCSynthese
     - [X] Créer Class [Synthese]
     - [X] Fournir le possibilité de recupérer les données de synthèse pour un mois et une année en particulier
 - [ ] Get-RCDonneesDebat (? Get-RCRecherche ?)
-- [ ] Get-RCProjetDeLoi -> http://www.assemblee-nationale.fr/15/documents/index-dossier.asp
+- [ ] Get-RCDossier -> http://www.assemblee-nationale.fr/15/documents/index-dossier.asp
     - [X] Parametre ID
     - [ ] Parametre Full (Recuperation des données Documents, Intervenants,Seance, sousSections via ID/slug)
-- [ ] Class ProjetDeLoi
+- [ ] Class Dossier
+    - [X] GetSceances
+    - [ ] GetDocuments
+    - [ ] GetSousSections
     - [ ] GetStats()
             Retourne les statistiques d'intervention de pers ($ret.intervenants.parlementaire -> voir hidden $id_intervenants)
     - [ ] GetIntervenants
-    - [ ] GetSceances
-    - [ ] GetDocuments
-    - [ ] GetSousSections
 - [X] Get-RCSceance
    - [X] Class Sceance (Array d'interventions)
 - [X] Class Intervention
 - [X] Class Mandat
 
+- [ ] Error handling pour les cas ou PAS de connection internet est dispo.
