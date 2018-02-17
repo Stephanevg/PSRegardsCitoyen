@@ -10,9 +10,9 @@ Les points décrivent la liste actuel des tâches à faire:
     - [X] Parametre 'Nom'
     - [X] Paramtre 'Prenom'
     - [X] Recherche par 'Id'
-    - [ ] Parametre Circonscription
-    - [ ] Parametre NumDepartement
-    - [ ] Parametre NomDepartement
+    - [X] Parametre Circonscription
+    - [X] Parametre NumDepartement
+    - [X] Parametre NomDepartement
 - [X] Get-RCGroupePolitique
     - [X] Parametre 'ListMembre'
     - [X] Parametre 'Nom'
@@ -34,13 +34,12 @@ Les points décrivent la liste actuel des tâches à faire:
 - [X] Get-RCDossier -> http://www.assemblee-nationale.fr/15/documents/index-dossier.asp
     - [X] Parametre ID
     - [X] Parametre Full (Recuperation des données Documents, Intervenants,Seance, sousSections via ID/slug)
-    - [ ] Class Dossier
+    - [X] Class Dossier
         - [X] _LoadSceances
         - [X] LoadDocuments
-        - [ ] LoadSousSections
         - [X] _LoadIntervenants()
             - [ ] GetInterventions()
-                Retourne les interventions de d'un député en mémoire.
+                Retourne les interventions de d'un député en mémoire. (Trop complexe?)
 - [X] Get-RCDocument
     - [X] Class Document
 - [X] Get-RCSceance
