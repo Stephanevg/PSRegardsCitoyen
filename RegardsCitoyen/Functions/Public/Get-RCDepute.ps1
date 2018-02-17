@@ -41,13 +41,25 @@ Function Get-RCDepute {
 
         [Parameter(Mandatory=$false,ParameterSetName="slug")]
         [ValidateNotNullOrEmpty()]
-        [String]$Slug
+        [String]$Slug,
 
+        [Parameter(Mandatory=$false)]
+        [ValidateNotNullOrEmpty()]
+        [String]$NumCirconscription,
+
+        [Parameter(Mandatory=$false)]
+        [ValidateNotNullOrEmpty()]
+        [String]$NumDepartement,
+
+        [Parameter(Mandatory=$false)]
+        [ValidateNotNullOrEmpty()]
+        [String]$NomCirconscription
      
     )
 
 
     switch ($PsCmdlet.ParameterSetName) {
+
         "slug"{
             $url = $Rc_data.urls.Deputes.Replace("deputes/enmandat/json",$Slug) + "/json"
             $entry = (Invoke-RestMethod -Uri $url).Depute
@@ -74,7 +86,6 @@ Function Get-RCDepute {
             return [Depute]::New($entry.id,$entry.nom_de_famille,$entry.prenom,$entry.groupe_sigle,$entry.date_naissance,$entry.lieu_naissance,$entry.sexe,$entry.nom_circo,$entry.num_circo,$entry.place_en_hemicycle,$entry.mandat_debut,$entry.profession,$entry.twitter,$entry.nb_mandats,$entry.parti_ratt_financier,$autresmandats,$Collaborateurs,$Emails)
             Break;
         }
-
         "id"{
 
             
@@ -116,6 +127,18 @@ Function Get-RCDepute {
         "All"{
             $Data = (Invoke-RestMethod -Uri $RC_data.urls.deputes).deputes.depute
             
+            if ($NumCirconscription){
+
+                $Data = $Data | ? {$_.num_circo -eq $NumCirconscription}
+
+            }elseif($NomCirconscription){
+                $Data = $Data | ? {$_.nom_circo -eq $NomCirconscription}
+            }elseif($numDepartement){
+
+                $Data = $Data | ? {$_.num_deptmt -eq $numDepartement}
+
+            }
+
             Foreach ($entry in $Data){
 
                 $Collaborateurs = @()

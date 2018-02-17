@@ -47,6 +47,24 @@ Context "Testing Regards Citoyen"{
             $Richou.Prenom -eq "Richard" | should be $true
             $Richou.Nom -eq "Ferrand" | should be $true
         }
+
+        it "Param NumDepartement 67" {
+            $dep = Get-RCDepute -NumDepartement 67
+            $dep | should not benullorempty
+            
+        }
+
+        it "Param NomCirconscription 'Haut-Rhin'" {
+            $dep = Get-RCDepute -NumDepartement 67
+            $dep | should not benullorempty
+            
+        }
+
+        it "Param NumCirconscription 5" {
+            $dep = Get-RCDepute -NumDepartement 67
+            $dep | should not benullorempty
+            
+        }
     }
     
 }
