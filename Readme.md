@@ -31,16 +31,18 @@ Les points décrivent la liste actuel des tâches à faire:
     - [X] Créer Class [Synthese]
     - [X] Fournir le possibilité de recupérer les données de synthèse pour un mois et une année en particulier
 - [ ] Get-RCDonneesDebat (? Get-RCRecherche ?)
-- [ ] Get-RCDossier -> http://www.assemblee-nationale.fr/15/documents/index-dossier.asp
+- [X] Get-RCDossier -> http://www.assemblee-nationale.fr/15/documents/index-dossier.asp
     - [X] Parametre ID
-    - [ ] Parametre Full (Recuperation des données Documents, Intervenants,Seance, sousSections via ID/slug)
-- [ ] Class Dossier
-    - [X] GetSceances
-    - [ ] GetDocuments
-    - [ ] GetSousSections
-    - [ ] GetStats()
-            Retourne les statistiques d'intervention de pers ($ret.intervenants.parlementaire -> voir hidden $id_intervenants)
-    - [ ] GetIntervenants
+    - [X] Parametre Full (Recuperation des données Documents, Intervenants,Seance, sousSections via ID/slug)
+    - [ ] Class Dossier
+        - [X] _LoadSceances
+        - [X] LoadDocuments
+        - [ ] LoadSousSections
+        - [X] _LoadIntervenants()
+            - [ ] GetInterventions()
+                Retourne les interventions de d'un député en mémoire.
+- [X] Get-RCDocument
+    - [X] Class Document
 - [X] Get-RCSceance
    - [X] Class Sceance (Array d'interventions)
 - [X] Class Intervention
