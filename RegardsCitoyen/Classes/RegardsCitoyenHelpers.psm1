@@ -168,7 +168,7 @@ Class Dossier {
             $inter += @()
             foreach ($Id in $this.Id_intervenants){
 
-                $inter += Get-RCIntervenant -id $id
+                $inter += Get-RCDepute -Slug $id
 
             }
 
@@ -235,12 +235,6 @@ Class Dossier {
 
 }
 
-Class Intervenant : Depute{
-    Intervenant(){
-
-    }
-}
-
 Class Mandat {
     [String]$Commune
     [String]$Entite
@@ -292,5 +286,42 @@ Class Intervention {
         $this.tags = $Tags
         $this.Amendements = $Amendements
         $this.Loi = $Loi
+    }
+}
+
+Class Document {
+    [int]$id
+    [String]$titre
+    [string]$nbcommentaires
+    [String]$legislature
+    [string]$annexe
+    [String]$Type
+    [String]$typeDetails
+    [String]$Categorie
+    [String]$iddossieran
+    [datetime]$Date
+    hidden[String]$Sourceurl
+    [String]$organismeid
+    [string]$Signataires
+    [String]$Contenue
+    hidden[String]$urlNosDeputes
+
+    Document ([int]$id,[String]$titre,[String]$nbcommentaires,[string]$legislature,[string]$annexe,[string]$type,[String]$typeDetails,[String]$Categorie,[string]$iddossieran,[datetime]$date,[string]$Sourceurl,[String]$organismeid,[string]$Signataires,[string]$Contenue,[string]$urlNosDeputes){
+    
+        $this.id = $id
+        $this.titre = $titre
+        $this.nbcommentaires = $nbcommentaires
+        $this.legislature = $legislature
+        $this.annexe =$annexe
+        $this.Type = $type
+        $this.typeDetails = $typeDetails
+        $this.Categorie = $Categorie
+        $this.iddossieran = $iddossieran
+        $this.Date = $date
+        $this.Sourceurl = $Sourceurl
+        $this.organismeid = $organismeid
+        $this.Signataires= $Signataires
+        $this.Contenue = $Contenue
+        $this.urlNosDeputes = $urlNosDeputes
     }
 }
