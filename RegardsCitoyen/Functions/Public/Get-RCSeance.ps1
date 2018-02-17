@@ -63,7 +63,7 @@ Function Get-RCSeance {
             foreach ($i in $id){
                 $urlid = ""
                 $urlid = $RC_data.Urls.Seance + $i + "/json"
-                $Interventions = Invoke-restmethod -uri $urlid -Verbose
+                $Interventions = Invoke-restmethod -uri $urlid
                 
                 Foreach ($ret in $Interventions.seance.intervention){
                     $DAte = ""
@@ -88,5 +88,3 @@ Function Get-RCSeance {
 
 
 }
-$w = 16,34
-Get-RCSeance -id $w | measure

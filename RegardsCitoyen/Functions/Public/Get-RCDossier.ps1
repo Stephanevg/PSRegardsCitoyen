@@ -93,7 +93,7 @@ Function Get-RCDossier {
                 $ret = (invoke-restmethod $Entry.url_nosdeputes_api).Section
 
                 $id_sceances = $ret.seances.seance.id
-                $id_intervenants = $ret.intervenants.parlementaire.slug | Out-String
+                $id_intervenants = $ret.intervenants.parlementaire.slug
                 $id_soussections = $ret.soussections.soussection.id
                 $id_documents = $ret.documents.document.id
 
@@ -115,7 +115,7 @@ Function Get-RCDossier {
             $ret = (Invoke-restmethod $urlid).section
             
             $id_sceances = $ret.seances.seance.id
-                $id_intervenants = $ret.intervenants.parlementaire.slug | Out-String
+                $id_intervenants = $ret.intervenants.parlementaire.slug #| Out-String
                 $id_soussections = $ret.soussections.soussection.id
                 $id_documents = $ret.documents.document.id
 

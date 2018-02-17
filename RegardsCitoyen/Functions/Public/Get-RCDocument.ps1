@@ -42,7 +42,7 @@ Function Get-RCDocument {
             foreach ($i in $id){
                 $urlid = ""
                 $urlid = $RC_data.Urls.Document + $i + "/json"
-                $data = Invoke-restmethod -uri $urlid -Verbose
+                $data = Invoke-restmethod -uri $urlid
                 
                 Foreach ($ret in $data.texteloi){
                     $DAte = ""
