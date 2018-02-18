@@ -139,7 +139,7 @@ Class Dossier {
     [Datetime]$MinDate
     [DateTime]$MaxDate
     [int]$NbInterventions
-    [Depute[]]$Intervenants
+    [Object[]]$Intervenants
     [Intervention[]]$Seances
     [String[]]$Documents
     [String[]]$SousSection
@@ -163,17 +163,17 @@ Class Dossier {
     
     hidden [Void] _LoadIntervenants(){
         
-        write-verbose "Chargement des seances.."
+        write-verbose "Chargement des intervenants.."
 
         if ($this.Id_intervenants){
-            $inter += @()
+            [Depute[]]$inter = @()
             foreach ($Id in $this.Id_intervenants){
-
-                $inter += Get-RCDepute -Slug $id
-
+                
+                $temp = Get-RCDepute -Slug $id
+                $this.Intervenants += $temp
             }
 
-            $this.Intervenants = $inter  
+              
         }
 
     }
@@ -212,7 +212,8 @@ Class Dossier {
     }
 
     [Void] _LoadSousSections(){
-
+        #Jusqu'a  présent, j'ai trouver aucun dossier qui contenait des sous sections.
+        #Pas implémentée du coté de NosDeputes.fr?
         write-verbose "Chargement des seances.."
         if ($this.id_soussections){
             $soussec += @()
@@ -231,7 +232,10 @@ Class Dossier {
         $this._LoadSeances()
         $this._LoadDocuments()
         $this._LoadIntervenants()
-        $this._LoadSousSections()
+        
+        #Sous Sections reelement implementé?
+        #$this._LoadSousSections()
+
         return $this
     }
 
@@ -325,5 +329,70 @@ Class Document {
         $this.Signataires= $Signataires
         $this.Contenue = $Contenue
         $this.urlNosDeputes = $urlNosDeputes
+    }
+}
+
+Class Organisme{
+    [int]$Id
+    [String]$Nom
+    [string]$Type
+    Hidden [String]$Slug
+    Hidden [string]$api
+    [Depute[]]$Membres
+
+    Organisme([int]$id,[String]$Nom,[String]$Type,[String]$Slug,[String]$api){
+        $this.Id = $id
+        $This.Nom = $Nom
+        $this.Type = $Type
+        $this.Slug = $slug
+        $this.api = $api
+    }
+
+    [void]_LoadMembres(){
+        $mem = invoke-restMethod -Uri $this.api
+
+        
+
+        foreach($entry in $mem.Deputes.Depute){
+
+            $Collaborateurs = @()
+                foreach ($col in $entry.Collaborateurs.Collaborateur){
+                        $Collaborateurs += $col
+                }
+
+                $autresmandats = @()
+                foreach ($autreMandat in $entry.autres_mandats.mandat){
+                        $mandat = ""
+                        $mandat = $autreMandat.replace(" ","").split("/")
+                        if ($mandat){
+                            $autresmandats += [Mandat]::New($mandat[0],$mandat[1],$mandat[2])
+
+                        }
+                }
+
+                $Emails = @()
+                foreach ($mail in $entry.emails.email){
+                        $Emails += $mail
+                }
+
+            $this.Membres +=[Depute]::New($entry.id,$entry.nom_de_famille,$entry.prenom,$entry.groupe_sigle,$entry.date_naissance,$entry.lieu_naissance,$entry.sexe,$entry.nom_circo,$entry.num_circo,$entry.place_en_hemicycle,$entry.mandat_debut,$entry.profession,$entry.twitter,$entry.nb_mandats,$entry.parti_ratt_financier,$autresmandats,$Collaborateurs,$Emails)
+            #$this.Membres += [Depute]::New()
+        }
+    }
+
+    [Depute[]]GetMembres(){
+        if(!($this.Membres)){
+            $this._LoadMembres()
+        }
+        return $this.Membres
+    }
+
+    [Depute]GetPresident(){
+        #tbd
+        return $this.Membres
+    }
+    [Depute[]]GetVicePresident(){
+        #tbd
+        return $this.Membres
     }
 }

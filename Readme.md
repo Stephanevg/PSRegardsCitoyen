@@ -16,10 +16,14 @@ Les points décrivent la liste actuel des tâches à faire:
 - [X] Get-RCGroupePolitique
     - [X] Parametre 'ListMembre'
     - [X] Parametre 'Nom'
-- [ ] Get-RCFonctionParlementaires
-    - [ ] Creer Class FonctionParlementaire
-    - [ ] Methode [Depute] GetMembres() 
-    - [ ] Methode [Depute] GetPresident()
+- [X] Get-RCOrganismeParlementaire
+    - [ ] Ecrire Pester Test Get-RCOrganismeParlementaire.Tests.ps1
+    - [X] Creer Class Organisme
+    - [X] Methode [Depute] GetMembres() 
+    - [ ] Methode [Depute] GetPresident() 
+        --> CEci va nécessité la création d'une class 'Membre' qui hériterais de [Depute] avec les propriétés supp suivants:
+            --> fonction
+            --> Debut fonction
 - [ ] Get-RCMissionExtraParlementaires
     - [ ] Methode [Depute] GetMembres() 
     - [ ] Methode [Depute] GetPresident()
@@ -39,12 +43,13 @@ Les points décrivent la liste actuel des tâches à faire:
         - [X] LoadDocuments
         - [X] _LoadIntervenants()
             - [ ] GetInterventions()
-                Retourne les interventions de d'un député en mémoire. (Trop complexe?)
+                Retourne les interventions d'un député en mémoire. (Trop complexe?)
 - [X] Get-RCDocument
     - [X] Class Document
 - [X] Get-RCSceance
    - [X] Class Sceance (Array d'interventions)
 - [X] Class Intervention
 - [X] Class Mandat
+- [ ] Analyse pour Cmdlet GetRCRecherche
 
 - [ ] Error handling pour les cas ou PAS de connection internet est dispo.
