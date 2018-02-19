@@ -24,9 +24,10 @@ Les points décrivent la liste actuel des tâches à faire:
         --> CEci va nécessité la création d'une class 'Membre' qui hériterais de [Depute] avec les propriétés supp suivants:
             --> fonction
             --> Debut fonction
-- [ ] Get-RCMissionExtraParlementaires
-    - [ ] Methode [Depute] GetMembres() 
+- [X] Get-RCOrganismeExtraParlementaire
+    - [X] Methode [Depute] GetMembres() 
     - [ ] Methode [Depute] GetPresident()
+    - [ ] Create Pester Test
 - [ ] Get-RCEtudesEtAmities
     - [ ] Methode [Depute] GetMembres() 
     - [ ] Methode [Depute] GetPresident()
