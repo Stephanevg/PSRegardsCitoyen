@@ -16,6 +16,24 @@ Enum Sexe {
     H = 2
 }
 
+
+Enum RechercheType{
+    Parlementaire
+    Organisme
+    Intervention
+    Amendement
+    QuestionEcrite
+    Section
+    Texteloi
+    Commentaire
+}
+
+Enum Format{
+    json
+    xml
+    csv
+}
+
 Class GroupePolitique {
     [int]$id
     [string]$Slug

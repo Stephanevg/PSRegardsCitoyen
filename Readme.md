@@ -35,7 +35,10 @@ Les points décrivent la liste actuel des tâches à faire:
 - [X] Get-RCSynthese
     - [X] Créer Class [Synthese]
     - [X] Fournir le possibilité de recupérer les données de synthèse pour un mois et une année en particulier
-- [ ] Get-RCDonneesDebat (? Get-RCRecherche ?)
+- [X] Invoke-RCRecherche
+    - [X] Implemente Query (Text Libre)
+    - [X] Implementation de query aidé (Via Params)
+    - [ ] Pester Tests
 - [X] Get-RCDossier -> http://www.assemblee-nationale.fr/15/documents/index-dossier.asp
     - [X] Parametre ID
     - [X] Parametre Full (Recuperation des données Documents, Intervenants,Seance, sousSections via ID/slug)
@@ -46,6 +49,8 @@ Les points décrivent la liste actuel des tâches à faire:
             - [ ] GetInterventions()
                 Retourne les interventions d'un député en mémoire. (Trop complexe?)
 - [X] Get-RCDocument
+    - [X] ID
+    - [ ] No Param (List tous les Documents) -> Depends sur Get-RCRecherche
     - [X] Class Document
 - [X] Get-RCSceance
    - [X] Class Sceance (Array d'interventions)
