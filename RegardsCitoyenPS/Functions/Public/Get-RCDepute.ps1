@@ -6,20 +6,62 @@ Function Get-RCDepute {
     .DESCRIPTION
     Permet de rÃ©cuperer des donnÃ©es statitiques des reprÃ©sentants politique FranÃ§ais.
     
-    .PARAMETER Type
+    .PARAMETER Nom
     Parameter description
     
-    .PARAMETER Valeur
+    .PARAMETER Prenom
     Parameter description
     
-    .PARAMETER DetailsDe
+    .PARAMETER Id
     Parameter description
-    
-    .EXAMPLE
-    Get-RCDepute -Type Fillon -Valeur menuel -DetailsDe
+
+    .PARAMETER NumCirconscription
+
+
+    Note: Le filtrage est effectué coté client, ce qui peut entrainer des effets sur la performance
+
+    .PARAMETER NomCirconscription
+
+    Note: Le filtrage est effectué coté client, ce qui peut entrainer des effets sur la performance
+
+    .PARAMETER NumDepartement
+
+    Permet de filtrer les resultats sur le numéro de département.
 
     .EXAMPLE
-    Get-RCDepute -Type Circonscription -Valeur Haut-Rhin | select nom,Sexe,Groupe_sigle
+
+   Filtre les resultats sur le numéro de département '67' (Bas-Rhin).
+
+    Get-RCDepute -NumDepartement 67 | format-table
+
+    id Nom      Prenom   Sexe DateNaissance          LieuNaissance            Groupe NomCirconscription numcirco PlaceHemicylce
+    -- ---      ------   ---- -------------          -------------            ------ ------------------ -------- --------------
+    26 Wonner   Martine     F 3/27/1964 12:00:00 AM  Hayange (Moselle)        LREM   Bas-Rhin                  4            488
+    48 Waserman Sylvain     H 12/8/1967 12:00:00 AM  Paris 07 (Paris)         MODEM  Bas-Rhin                  2            267
+    89 Furst    Laurent     H 5/19/1965 12:00:00 AM  Colmar (Haut-Rhin)       LR     Bas-Rhin                  6             80
+    306 Thiébaut Vincent     H 5/23/1972 12:00:00 AM  Toulouse (Haute-Garonne) LREM   Bas-Rhin                  9            432
+    312 Reiss    Frédéric    H 11/12/1949 12:00:00 AM Haguenau (Bas-Rhin)      LR     Bas-Rhin                  8             77
+    373 Michels  Thierry     H 8/27/1960 12:00:00 AM  Strasbourg (Bas-Rhin)    LREM   Bas-Rhin                  1            445
+    456 Herth    Antoine     H 2/14/1963 12:00:00 AM  Sélestat (Bas-Rhin)      UAI    Bas-Rhin                  5            143
+    487 Studer   Bruno       H 6/18/1978 12:00:00 AM  Colmar (Haut-Rhin)       LREM   Bas-Rhin                  3            478
+    570 Hetzel   Patrick     H 7/2/1964 12:00:00 AM   Phalsbourg (Moselle)     LR     Bas-Rhin                  7             79
+
+    Permet de filtrer la recherche sur le numéro de département
+
+    Note: Le filtrage est effectué coté client, ce qui peut entrainer des effets sur la performance
+    
+    .EXAMPLE
+    
+    Get-RCDepute -NomCirconscription Haut-Rhin | format-table
+
+    id Nom            Prenom   Sexe DateNaissance          LieuNaissance         Groupe NomCirconscription numcirco PlaceHemicylce
+    -- ---            ------   ---- -------------          -------------         ------ ------------------ -------- --------------
+    72 Schellenberger Raphaël     H 2/14/1990 12:00:00 AM  Mulhouse (Haut-Rhin)  LR     Haut-Rhin                 4             72
+    110 Straumann      Éric        H 8/17/1964 12:00:00 AM  Colmar (Haut-Rhin)    LR     Haut-Rhin                 1             76
+    207 Cattin         Jacques     H 6/4/1958 12:00:00 AM   Colmar (Haut-Rhin)    LR     Haut-Rhin                 2             73
+    298 Becht          Olivier     H 4/28/1976 12:00:00 AM  Strasbourg (Bas-Rhin) UAI    Haut-Rhin                 5            154
+    469 Reitzer        Jean-Luc    H 12/29/1951 12:00:00 AM Altkirch (Haut-Rhin)  LR     Haut-Rhin                 3             75
+    528 Fuchs          Bruno       H 4/7/1959 12:00:00 AM   Colmar (Haut-Rhin)    MODEM  Haut-Rhin                 6            181
     
     .NOTES
         -Version: 1.0
