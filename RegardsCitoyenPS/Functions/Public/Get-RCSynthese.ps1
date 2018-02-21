@@ -57,8 +57,16 @@ Function Get-RCSynthese {
         "Uri" = $url
     }
 
-
-    $Data = Invoke-RestMethod @Parameters
+    try{
+        $Data = Invoke-RestMethod @Parameters
+    }Catch [System.Net.WebException]{
+        write-warning "Server indisponible: Merci de vérifier vôtre connection internet."
+        break
+       
+    }Catch{
+        $_.exception.message
+    }
+    
 
     Foreach ($syn in $Data.Deputes.Depute){
         try{

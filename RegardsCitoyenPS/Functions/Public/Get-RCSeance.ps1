@@ -69,7 +69,18 @@ Function Get-RCSeance {
             foreach ($i in $id){
                 $urlid = ""
                 $urlid = $RC_data.Urls.Seance + $i + "/json"
-                $Interventions = Invoke-restmethod -uri $urlid
+
+                try{
+                    $Interventions = Invoke-RestMethod -Uri $urlid -ErrorAction Stop
+                }Catch [System.Net.WebException]{
+                    write-warning "Server indisponible: Merci de vérifier vôtre connection internet."
+                    break
+                   
+                }Catch{
+                    $_.exception.message
+                }
+
+               
                 
                 Foreach ($ret in $Interventions.seance.intervention){
                     $DAte = ""

@@ -10,8 +10,8 @@ Function Get-RCDocument {
     -> Rapport
     
     .PARAMETER Id
-   Permet de lister toutes les interventions relatives a une scéeances bien particulière via le parametre ID.
-    
+   Permet de lister toutes les interventions relatives a une scéances bien particulière via le parametre ID.
+    Parametre obligatoire!
 
     
     .EXAMPLE
@@ -44,7 +44,18 @@ Function Get-RCDocument {
             foreach ($i in $id){
                 $urlid = ""
                 $urlid = $RC_data.Urls.Document + $i + "/json"
-                $data = Invoke-restmethod -uri $urlid
+
+                try{
+                    $data = Invoke-RestMethod -Uri $urlid -ErrorAction Stop
+                }Catch [System.Net.WebException]{
+                    write-warning "Server indisponible: Merci de vérifier vôtre connection internet."
+                    break
+                   
+                }Catch{
+                    $_.exception.message
+                }
+
+               
                 
                 Foreach ($ret in $data.texteloi){
                     $DAte = ""

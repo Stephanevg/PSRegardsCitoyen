@@ -73,7 +73,7 @@ Function Get-RCGroupePolitique {
     [CmdletBinding(DefaultParameterSetName="all")]
     Param(
 
-        [Parameter(Mandatory=$false,ParameterSetName="get")]
+        [Parameter(Mandatory=$true,ParameterSetName="get")]
         [Parti]$Nom,
 
         #bug: nom should be mandatory when ListMembers is called
@@ -88,7 +88,18 @@ Function Get-RCGroupePolitique {
             if ($ListMembres){
                 write-verbose "[MEMBRES]Telechargement des données depuis internet..."
                 $url = ($RC_Data.Urls.groupepolitique).Replace("/json",("/" + $Nom.ToString() + "/json"))
-                $data = (invoke-restmethod -Uri $url).deputes
+
+                try{
+                    $data = (Invoke-RestMethod -Uri $url -ErrorAction Stop).deputes
+                }Catch [System.Net.WebException]{
+                    write-warning "Server indisponible: Merci de vérifier vôtre connection internet."
+                    break
+                   
+                }Catch{
+                    $_.exception.message
+                    continue
+                }
+
                 Foreach ($entry in $Data.depute){
                     #Depute([int]$id,[String]$Nom,[String]$Prenom,[String]$Groupe,[DateTime]$DateNaissance,[String]$LieuNaissance,[Sexe]$Sexe,[string]$nomcirco,[int]$numcirco,[int]$PlaceHemicylce,[DateTime]$DebutDeMandat,[String]$Profession,[string]$Twitter,[int]$NbMandats,[string]$partirattfinancier,[Mandat[]]$autresmandats,[string[]]$Collaborateurs,[string[]]$Emails){
                         $Collaborateurs = @()
@@ -118,7 +129,18 @@ Function Get-RCGroupePolitique {
             }else{
                 write-verbose "[GET]Telechargement des données depuis internet..."
                 $url = ($RC_Data.Urls.organisme)
-                $all = (invoke-restmethod -Uri $url).organismes.organisme
+
+                try{
+                    $all = (invoke-restmethod -Uri $url).organismes.organisme
+                }Catch [System.Net.WebException]{
+                    write-warning "Server indisponible: Merci de vérifier vôtre connection internet."
+                    break
+                   
+                }Catch{
+                    $_.exception.message
+                }
+
+                
                 $fro = $all | ? {$_.acronyme -eq $Nom}
                 [GroupePolitique]::new($fro.id,$fro.slug,$fro.nom,$fro.acronyme,$fro.groupe_actuel,$fro.couleur,$fro.order,$fro.type,$fro.url_nosdeputes,$fro.url_NosDeputes_api)
                 break;
@@ -129,10 +151,21 @@ Function Get-RCGroupePolitique {
         "all"{
             
             write-verbose "[ALL]Telechargement des données depuis internet..."
-            $FROrganismes = (invoke-restmethod $RC_Data.Urls.organisme)
+
+            try{
+                $data = Invoke-RestMethod -Uri $RC_data.urls.organisme -ErrorAction Stop
+            }Catch [System.Net.WebException]{
+                write-warning "Server indisponible: Merci de vérifier vôtre connection internet."
+                break
+               
+            }Catch{
+                $_.exception.message
+            }
+
+            
            
 
-            foreach ($fro in $FROrganismes.organismes){
+            foreach ($fro in $data.organismes){
                 
                 [GroupePolitique]::new($fro.organisme.id,$fro.organisme.slug,$fro.organisme.nom,$fro.organisme.acronyme,$fro.organisme.groupe_actuel,$fro.organisme.couleur,$fro.organisme.order,$fro.organisme.type,$fro.organisme.url_nosdeputes,$fro.organisme.url_NosDeputes_api)
             }

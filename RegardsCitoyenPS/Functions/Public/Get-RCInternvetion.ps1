@@ -56,7 +56,19 @@ Function Get-RCIntervention {
             foreach ($i in $id){
                 $urlid = ""
                 $urlid = $RC_data.Urls.Intervention + $i + "/json"
-                $Interventions = Invoke-restmethod -uri $urlid -Verbose
+
+                try{
+                    $Interventions = Invoke-restmethod -uri $urlid
+                }Catch [System.Net.WebException]{
+                    write-warning "Server indisponible: Merci de vérifier vôtre connection internet."
+                    break
+                   
+                }Catch{
+                    $_.exception.message
+                }
+                
+
+               
                 
                 Foreach ($ret in $Interventions.intervention){
                     $Date = ""

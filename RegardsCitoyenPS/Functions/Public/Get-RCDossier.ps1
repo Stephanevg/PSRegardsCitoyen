@@ -93,7 +93,18 @@ Function Get-RCDossier {
         
           
         "All"{
-            $Data = Invoke-RestMethod -Uri $RC_data.urls.Dossiers
+
+            try{
+                $data = Invoke-RestMethod -Uri $RC_data.urls.Dossiers -ErrorAction Stop
+            }Catch [System.Net.WebException]{
+                write-warning "Server indisponible: Merci de vérifier vôtre connection internet."
+                break
+               
+            }Catch{
+                $_.exception.message
+            }
+
+            
     
             Foreach ($entry in $Data.sections.section){
                 
@@ -119,7 +130,18 @@ Function Get-RCDossier {
         }
         "id"{
             $urlid = $RC_data.Urls.Dossiers.replace("dossiers/nom/json",("15/dossier/" + $id + "/json"))
-            $ret = (Invoke-restmethod $urlid).section
+
+            try{
+                $ret = (Invoke-RestMethod -Uri $urlid -ErrorAction Stop).section
+            }Catch [System.Net.WebException]{
+                write-warning "Server indisponible: Merci de vérifier vôtre connection internet."
+                break
+               
+            }Catch{
+                $_.exception.message
+            }
+
+           
             
             $id_sceances = $ret.seances.seance.id
                 $id_intervenants = $ret.intervenants.parlementaire.slug #| Out-String

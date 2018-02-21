@@ -9,7 +9,7 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-RootModule = 'RegardsCitoyen.psm1'
+RootModule = 'RegardsCitoyenPS.psm1'
 
 # Version number of this module.
 

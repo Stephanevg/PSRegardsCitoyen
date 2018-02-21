@@ -82,8 +82,18 @@ Function Get-RCOrganismeParlementaire {
         }
         #>
         "all"{
-            $all = invoke-restMethod $RC_data.Urls.OrganismeParlementaire
             
+            
+            try{
+                $all = invoke-restMethod $RC_data.Urls.OrganismeParlementaire
+            }Catch [System.Net.WebException]{
+                write-warning "Server indisponible: Merci de vérifier vôtre connection internet."
+                break
+               
+            }Catch{
+                $_.exception.message
+            }
+
             foreach ($ret in $all.organismes.organisme){
 
                 

@@ -71,9 +71,18 @@ Function Get-RCOrganismeExtraParlementaire {
                 
                 foreach ($sl in $slug){
                     
-                    #$url = ""
-                    #$url = $RC_data.Urls.extra.Replace("s/extra/json",("/" + $sl + "/json"))
-                    $AllOrganismes = (Invoke-restmethod -uri $url).Organismes.organisme
+
+                    try{
+                        $AllOrganismes = (Invoke-restmethod -uri $url).Organismes.organisme
+                    }Catch [System.Net.WebException]{
+                        write-warning "Server indisponible: Merci de vérifier vôtre connection internet."
+                        break
+                       
+                    }Catch{
+                        $_.exception.message
+                    }
+
+                    
                     $ret = $AllOrganismes | ? {$_.slug -eq $slug}
                     $obj = [Organisme]::new($ret.id,$ret.nom,$ret.type,$ret.slug,$ret.url_nosdeputes_api)
                     
@@ -93,7 +102,19 @@ Function Get-RCOrganismeExtraParlementaire {
                 }
         }
         "all"{
-            $all = invoke-restMethod $Url   
+
+            try{
+                $all = invoke-restMethod $Url 
+            }Catch [System.Net.WebException]{
+                write-warning "Server indisponible: Merci de vérifier vôtre connection internet."
+                break
+               
+            }Catch{
+                $_.exception.message
+            }
+
+
+              
             
             foreach ($ret in $all.organismes.organisme){
 
