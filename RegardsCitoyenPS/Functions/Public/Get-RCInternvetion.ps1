@@ -26,9 +26,6 @@ Function Get-RCIntervention {
     tags           :
     Amendements    :
     Loi            : {}
-
-
-    .EXAMPLE
     
     .NOTES
     Stéphane van Gulick

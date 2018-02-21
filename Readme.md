@@ -1,4 +1,4 @@
-# Regards Citoyen PS
+# RegardsCitoyenPS
 
 Ce projet est un projet qui permet de fournir à tout citoyen, la possibilité de rechercher des données de la vie politique Française en utilisant Windows PowerShell par le biais de l'API RegardsCitoyen.
 
@@ -56,6 +56,17 @@ Les points décrivent la liste actuel des tâches à faire:
    - [X] Class Sceance (Array d'interventions)
 - [X] Class Intervention
 - [X] Class Mandat
-- [ ] Analyse pour Cmdlet GetRCRecherche
-
-- [ ] Error handling pour les cas ou PAS de connection internet est dispo.
+- [X] Analyse pour Cmdlet GetRCRecherche
+- [ ] Class Intervenant (Hérite de Depute)
+    - [ ] Update toutes les cmdlets suivants:
+        - [ ] Get-RCDossier
+- [ ] Improve Error handling
+- [ ] Documentation
+    - [ ] about_RegardsCitoyenPs
+    - [ ] Get-RCDepute
+    - [ ] Get-RCDocument
+    - [ ] Get-RCDossier
+    - [ ] Get-RCGroupePolitique
+    - [ ] Get-RCSeance
+    - [ ] Get-RCSynthese
+    - [ ] Invoke-RCRecherche

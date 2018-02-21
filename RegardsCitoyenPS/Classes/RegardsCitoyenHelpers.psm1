@@ -62,6 +62,18 @@ Class GroupePolitique {
     
 }
 
+Class Mandat {
+    [String]$Commune
+    [String]$Entite
+    [String]$Fonction
+
+    Mandat([String]$Commune,[String]$Entite,[String]$Fonction){
+        $this.Commune = $Commune
+        $this.Entite = $Entite
+        $This.Fonction = $Fonction
+    }
+}
+
 Class Depute{
     [int]$id
     [String]$Nom
@@ -149,6 +161,38 @@ Class Synthese{
         $This.SemainesPresence = $SemainesPresence
     }
     
+}
+
+Class Intervention {
+    [int]$id
+    [string]$Titre
+    [String]$Lieu
+    [DateTime]$Date
+    [String]$Type
+    [String]$Section
+    [String]$SousSection
+    [String]$NomIntervenant
+    hidden [String]$slugIntervenant
+    [String]$Contenu
+    [String]$tags
+    [String]$Amendements
+    [Int[]]$Loi
+
+    Intervention ([Int]$Id,[String]$Titre,[String]$Lieu,[DateTime]$Date,[String]$Type,[String]$Section,[String]$SousSection,[String]$NomIntervenant,[String]$SlugIntervenant,[String]$Contenu,[String]$Tags,[String]$Amendements,[int[]]$Loi){
+        $this.id = $Id
+        $this.Titre = $Titre
+        $this.Lieu = $Lieu
+        $this.Date = $Date
+        $this.Type = $Type
+        $this.Section = $Section
+        $this.SousSection = $SousSection
+        $this.NomIntervenant = $NomIntervenant
+        $this.slugIntervenant = $SlugIntervenant
+        $this.Contenu = $Contenu
+        $this.tags = $Tags
+        $this.Amendements = $Amendements
+        $this.Loi = $Loi
+    }
 }
 
 Class Dossier {
@@ -259,21 +303,11 @@ Class Dossier {
 
 }
 
-Class Mandat {
-    [String]$Commune
-    [String]$Entite
-    [String]$Fonction
 
-    Mandat([String]$Commune,[String]$Entite,[String]$Fonction){
-        $this.Commune = $Commune
-        $this.Entite = $Entite
-        $This.Fonction = $Fonction
-    }
-}
 
 Class Circonscription {
-    $Nom
-    $Num
+    [String]$Nom
+    [string]$Num
 
     Circonscription ([String]$Nom,[Int]$Num){
         $this.nom = $Nom
@@ -281,37 +315,7 @@ Class Circonscription {
     }
 }
 
-Class Intervention {
-    [int]$id
-    [string]$Titre
-    [String]$Lieu
-    [DateTime]$Date
-    [String]$Type
-    [String]$Section
-    [String]$SousSection
-    [String]$NomIntervenant
-    hidden [String]$slugIntervenant
-    [String]$Contenu
-    [String]$tags
-    [String]$Amendements
-    [Int[]]$Loi
 
-    Intervention ([Int]$Id,[String]$Titre,[String]$Lieu,[DateTime]$Date,[String]$Type,[String]$Section,[String]$SousSection,[String]$NomIntervenant,[String]$SlugIntervenant,[String]$Contenu,[String]$Tags,[String]$Amendements,[int[]]$Loi){
-        $this.id = $Id
-        $this.Titre = $Titre
-        $this.Lieu = $Lieu
-        $this.Date = $Date
-        $this.Type = $Type
-        $this.Section = $Section
-        $this.SousSection = $SousSection
-        $this.NomIntervenant = $NomIntervenant
-        $this.slugIntervenant = $SlugIntervenant
-        $this.Contenu = $Contenu
-        $this.tags = $Tags
-        $this.Amendements = $Amendements
-        $this.Loi = $Loi
-    }
-}
 
 Class Document {
     [int]$id

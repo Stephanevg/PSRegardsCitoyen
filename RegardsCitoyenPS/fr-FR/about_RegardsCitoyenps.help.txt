@@ -1,0 +1,228 @@
+TOPIC
+    about_RegardsCitoyenPS
+
+SHORT DESCRIPTION
+    Ce module powershell permet d'analyzer les données de la vie politique Française, mis a disposition par "Regards Citoyen".
+LONG DESCRIPTION
+    Les données de la vie politique Française sont mis à disposition à tous les citoyens Français via les site webs suivants:
+    www.assemblee-nationale.Fr
+    www.senat.Fr
+
+    Toutes les données sont mis à disposition sous leur forme de présentation finale, et sont uniquement bon pour un affiche. 
+    Les données mis à disposition ne sont donc pas facilement cumulable, analysable de manière automatisée.
+    RegardsCitoyen à créer le site www.nosdeputes.fr qui fait un synthèse globale de ce que nous mis à disposition l'état, et y éffectue une analyse plus étendue.
+    Le site www.NosDeputes.fr met les données qu'ils ont extrait des différent site webs également à disposition via un API (Application Programming Interface).
+
+    Le module powershell RegardsCitoyenPS ce base sur l'API mis à disposition par RegardsCitoyen, sauf pour la liste des cmdlets suivantes:
+    -> N/A
+
+EXAMPLES
+    #En premier lieu il faut importer le module:
+
+    Import-Module RegardsCitoyenPS
+
+    #Le module met à disposition un ensemble de commands (appelées cmdlets) qui permet de récuperer et de travailler sur les données.
+    La liste est actuellement composé de 11 cmdlet:
+
+    get-command -Module RegardsCitoyenPS | select Name,version
+
+    Name                              Version
+    ----                              -------
+    Get-RCDepute                      0.5.7
+    Get-RCDocument                    0.5.7
+    Get-RCDossier                     0.5.7
+    Get-RCGroupePolitique             0.5.7
+    Get-RCIntervention                0.5.7
+    Get-RCMembreGroupePolitique       0.5.7
+    Get-RCOrganismeExtraParlementaire 0.5.7
+    Get-RCOrganismeParlementaire      0.5.7
+    Get-RCSeance                      0.5.7
+    Get-RCSynthese                    0.5.7
+    Invoke-RCRecherche                0.5.7
+
+
+    #Retourne la liste des députes actuellement en mandat
+    Get-RCDepute
+
+
+        id                 : 1
+        Nom                : Roussel
+        Prenom             : Cédric
+        Sexe               : H
+        DateNaissance      : 10/10/1972 12:00:00 AM
+        LieuNaissance      : Brest (Finistère)
+        Groupe             : LREM
+        NomCirconscription : Alpes-Maritimes
+        numcirco           : 3
+        PlaceHemicylce     : 309
+        DebutDeMandat      : 6/21/2017 12:00:00 AM
+        Profession         : Conseiller en gestion de patrimoine indépendant
+        Twitter            : CedricRoussel06
+        NombreDeMandats    : 1
+        partirattfinancier : En marche !
+        autresmandats      : {}
+        Collaborateurs     : {Mme Tiffany Palanque, Mme Camilia M'Hamed-Said, Mme Morgane Reclus}
+        Emails             : {cedric.roussel@assemblee-nationale.fr, 6circo03@en-marche.fr}
+
+        id                 : 2
+        Nom                : Hai
+        Prenom             : Nadia
+        Sexe               : F
+        DateNaissance      : 3/8/1980 12:00:00 AM
+        LieuNaissance      : Trappes (Yvelines)
+        Groupe             : LREM
+        NomCirconscription : Yvelines
+        numcirco           : 11
+        PlaceHemicylce     : 349
+        DebutDeMandat      : 6/21/2017 12:00:00 AM
+        Profession         : Autre cadre (secteur privé)
+        Twitter            : NadiaHai78
+        NombreDeMandats    : 1
+        partirattfinancier : En marche !
+        autresmandats      : {}
+        Collaborateurs     : {Mme Nelly Guého, M. Moussa Ouarouss, Mme Feriel Herlaut, Mme Moufida Goucha}
+        Emails             : {nadia.hai@en-marche.fr, nadia.hai@assemblee-nationale.fr}
+
+        (...)
+
+
+    #Retourne la liste complete de tous les groupes politique Français existant actuellement.
+    Get-RCGroupePolitique
+
+
+        id            : 1
+        Slug          : deputes-non-inscrits
+        Nom           : Députés Non Inscrits
+        Acronyme      : NI
+        GroupeActuel  : True
+        Couleur       : 165,165,165
+        Type          : groupe
+        Order         : 8
+        urlNosDeputes : https://www.nosdeputes.fr/organisme/deputes-non-inscrits
+
+        id            : 8
+        Slug          : gauche-democrate-et-republicaine
+        Nom           : Gauche Démocrate et Républicaine
+        Acronyme      : GDR
+        GroupeActuel  : True
+        Couleur       : 255,30,30
+        Type          : groupe
+        Order         : 1
+        urlNosDeputes : https://www.nosdeputes.fr/organisme/gauche-democrate-et-republicaine
+
+        (...)
+
+    Get-RCDossier
+
+    #Retourne les dossiers qui sont (ou ont été) débatus au parlement.
+
+        id              : 2072
+        Titre           : Accès à l'eau
+        MinDate         : 2/1/2018 12:00:00 AM
+        MaxDate         : 2/1/2018 12:00:00 AM
+        NbInterventions : 92
+        Intervenants    :
+        Seances         :
+        Documents       :
+        SousSection     :
+
+        id              : 1557
+        Titre           : Accord de partenariat entre l'union européenne et le kazakhstan
+        MinDate         : 12/18/2017 12:00:00 AM
+        MaxDate         : 12/18/2017 12:00:00 AM
+        NbInterventions : 41
+        Intervenants    :
+        Seances         :
+        Documents       :
+        SousSection     :
+
+        id              : 2025
+        Titre           : Adaptation au droit de l'union européenne dans le domaine de la sécurité
+        MinDate         : 1/31/2018 12:00:00 AM
+        MaxDate         : 2/15/2018 12:00:00 AM
+        NbInterventions : 208
+        Intervenants    :
+        Seances         :
+        Documents       :
+        SousSection     :
+
+        (...)
+
+        Etant donnée qu'un dossier implique beaucoup de sous objets, et afin de réduire l'impact sur la bande passante,
+        pas toutes les données sont immédiatement disponible via la recherche simple.
+
+        Afin de récuprer tous les information d'un dossier en particulier il faut utiliser les paramètre -ID et -Full :
+
+        Get-RCDossier -id 2025 -Full
+
+
+        id              : 2025
+        Titre           : Adaptation au droit de l'union européenne dans le domaine de la sécurité
+        MinDate         : 1/31/2018 12:00:00 AM
+        MaxDate         : 2/15/2018 12:00:00 AM
+        NbInterventions : 208
+        Intervenants    : {30, 553, 586, 88...}
+        Seances         : {634, 634, 634, 634...}
+        Documents       : {Document, Document, Document}
+        SousSection     :
+
+        #Il est recommandé de retourner le résultat dans un variable pour un traitement futur:
+
+        $Dossier = Get-RCDossier -id 2025 -Full
+
+        #Pour identifier le nombre d'intervenant qu'il y eu sur ce dossier:
+
+        $Dossier.Intervenants.count 
+
+         --> 33
+
+        #Pour identifier quel députés sont intervenues sur ce dossier:
+
+        $Dossier.Intervenants | Format-Table
+
+        id Nom             Prenom       Sexe DateNaissance          LieuNaissance                          Groupe NomCirconscription   numcirco PlaceHemicylce
+        -- ---             ------       ---- -------------          -------------                          ------ ------------------   -------- --------------
+        30 Euzet           Christophe      H 4/2/1967 12:00:00 AM   Perpignan (Pyrénées-Orientales)        LREM   Hérault                     7            312
+        553 Courson (de)    Charles         H 4/2/1952 12:00:00 AM   Paris (Paris)                          UAI    Marne                       5            147
+        586 Lorho           Marie-France    F 12/15/1964 12:00:00 AM Colmar (Haut-Rhin)                     NI     Vaucluse                    4             70
+        88 Ménard          Emmanuelle      F 8/15/1968 12:00:00 AM  Lille (Nord)                           NI     Hérault                     6             68
+        203 Cordier         Pierre          H 5/27/1972 12:00:00 AM  Charleville-Mézières (Ardennes)        LR     Ardennes                    2              8
+        218 Bazin-Malgras   Valérie         F 10/31/1969 12:00:00 AM Romilly-sur-Seine (Aube)               LR     Aube                        2            119
+        514 Mis             Jean-Michel     H 7/28/1967 12:00:00 AM  Saint-Étienne (Loire)                  LREM   Loire                       2            430
+        56 Latombe         Philippe        H 4/21/1975 12:00:00 AM  Paris 14 (Paris)                       MODEM  Vendée                      1            253
+        331 Di Filippo      Fabien          H 8/23/1986 12:00:00 AM  Sarrebourg (Moselle)                   LR     Moselle                     4             13
+        201 Larive          Michel          H 8/22/1966 12:00:00 AM  Paris 14ème (Paris)                    LFI    Ariège                      2            630
+        241 Dunoyer         Philippe        H 1/11/1968 12:00:00 AM  Nouméa (Nouvelle-Calédonie)            UAI    Nouvelle-Calédonie          1            120
+        231 Castellani      Michel          H 9/28/1945 12:00:00 AM  Bastia (Haute-Corse)                   NI     Haute-Corse                 1            649
+        397 Corbière        Alexis          H 8/17/1968 12:00:00 AM  Béziers (Hérault)                      LFI    Seine-Saint-Denis           7            603
+        51 Karamanli       Marietta        F 12/18/1964 12:00:00 AM Athènes (Grèce)                        NG     Sarthe                      2            502
+        431 Obono           Danièle         F 7/12/1980 12:00:00 AM  Libreville (Gabon)                     LFI    Paris                      17            611
+        182 Terlier         Jean            H 3/2/1977 12:00:00 AM   Toulon (Var)                           LREM   Tarn                        3            457
+        325 Peu             Stéphane        H 7/24/1962 12:00:00 AM  Pau (Pyrénées-Atlantiques)             GDR    Seine-Saint-Denis           2            589
+        149 Lassalle        Jean            H 5/3/1955 12:00:00 AM   Lourdios-Ichère (Pyrénées-Atlantiques) NI     Pyrénées-Atlantiques        4            225
+        429 Untermaier      Cécile          F 12/28/1951 12:00:00 AM Belley (Ain)                           NG     Saône-et-Loire              4            577
+        369 Lurton          Gilles          H 7/6/1963 12:00:00 AM   Saint-Servan-sur Mer (Ille-et-Vilaine) LR     Ille-et-Vilaine             7             10
+        304 Trastour-Isnart Laurence        F 3/6/1972 12:00:00 AM   Cagnes-sur-Mer (Alpes-Maritimes)       LR     Alpes-Maritimes             6            151
+        166 Fiat            Caroline        F 1/28/1977 12:00:00 AM  VERDUN (Meuse)                         LFI    Meurthe-et-Moselle          6            602
+        453 Pouzyreff       Natalia         F 2/18/1961 12:00:00 AM  Limoges (Haute-Vienne)                 LREM   Yvelines                    6            228
+        87 Le Grip         Constance       F 11/14/1960 12:00:00 AM Chatou (Yvelines)                      LR     Hauts-de-Seine              6            102
+        148 Ressiguier      Muriel          F 12/21/1977 12:00:00 AM Châteauroux (Indre)                    LFI    Hérault                     2            620
+        497 Warsmann        Jean-Luc        H 10/22/1965 12:00:00 AM Villers-Semeuse (Ardennes)             UAI    Ardennes                    3            106
+        534 Prud'homme      Loïc            H 8/19/1969 12:00:00 AM  Bègles (Gironde)                       LFI    Gironde                     3            621
+        200 Masson          Jean-Louis      H 2/5/1954 12:00:00 AM   La Garde (Var)                         LR     Var                         3            152
+        506 Givernet        Olga            F 10/17/1981 12:00:00 AM Saint-Germain-en-Laye (Yvelines)       LREM   Ain                         3            572
+        40 Questel         Bruno           H 12/21/1966 12:00:00 AM Bourg-Achard (Eure)                    LREM   Eure                        4            383
+        296 Braun-Pivet     Yaël            F 12/7/1970 12:00:00 AM  Nancy (Meurthe-et-Moselle)             LREM   Yvelines                    5            481
+        125 Dive            Julien          H 5/21/1985 12:00:00 AM  Saint-Quentin (Aisne)                  LR     Aisne                       2             53
+        557 Trisse          Nicole          F 6/29/1963 12:00:00 AM  Sarreguemines (Moselle)                LREM   Moselle                     5            446
+
+KEYWORDS
+    RegardsCitoyen
+    France
+
+SEE ALSO
+    https://www.nosdeputes.fr/
+    https://www.regardscitoyens.org/
+    http://www.assemblee-nationale.fr/
+    http://www.powersheldistrict.com
+   
