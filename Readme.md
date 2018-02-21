@@ -60,7 +60,7 @@ Les points décrivent la liste actuel des tâches à faire:
 - [ ] Class Intervenant (Hérite de Depute)
     - [ ] Update toutes les cmdlets suivants:
         - [ ] Get-RCDossier
-- [ ] Improve Error handling
+- [X] Improve Error handling
 - [ ] Documentation
     - [X] about_RegardsCitoyenPs
     - [X] Get-RCDepute
