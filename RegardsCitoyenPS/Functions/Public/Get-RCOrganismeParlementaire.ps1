@@ -31,12 +31,17 @@ Function Get-RCOrganismeParlementaire {
     13 Commission des affaires économiques
     18 Commission des affaires étrangères
     (...)
-
-    .EXAMPLE
     
     .NOTES
-    RegardsCitoyen (cr)
-    Stéphane van Gulick
+        -Version: 1.0
+        -Author: Stéphane van Gulick 
+        -CreationDate: 01/02/2018
+        -LastModifiedDate: 01/02/2018
+        -History:
+            01/02/2018: Creation : Stéphane van Gulick
+       
+            Blog: www.powershelldistrict.com
+            Site Source: www.nosdeputes.fr
     #>
 
 

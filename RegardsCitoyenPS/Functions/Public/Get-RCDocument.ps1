@@ -17,12 +17,14 @@ Function Get-RCDocument {
     .EXAMPLE
     Get-RCDocument -id 414
 
-    
 
-    .EXAMPLE
-    
     .NOTES
-    Stéphane van Gulick
+     -Version: 1.0
+     -Author: Stéphane van Gulick 
+     -CreationDate: 01/02/2018
+     -LastModifiedDate: 01/02/2018
+     -History:
+        01/02/2018: Creation : Stéphane van Gulick
     #>
 
 
@@ -51,7 +53,7 @@ Function Get-RCDocument {
                     [Document]::New($ret.id,$ret.titre,$ret.nb_commentaires,$ret.legislature,$ret.annexe,$ret.type,$ret.type_details,$ret.categorie,$ret.id_dossier_an,$ret.date,$ret.source,$ret.organisme_id,$ret.Signataires,$ret.contenu,$ret.url_nosdeputes)
                     
                 }
-                #[ProjetDeLoi]::New($ret.id,$ret.Titre,$ret.nb_interventions,$ret.min_date,$ret.max_date,$ret.intervenants,$ret.documents,$ret.seances,$ret.soussections)
+                
                 Continue;
             }
         }

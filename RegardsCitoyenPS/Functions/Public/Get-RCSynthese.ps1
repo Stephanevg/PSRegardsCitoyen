@@ -28,7 +28,15 @@ Function Get-RCSynthese {
     REtourne les données de synthese du mois d'avril de 2017
     
     .NOTES
-    General notes
+        -Version: 1.0
+        -Author: Stéphane van Gulick 
+        -CreationDate: 01/02/2018
+        -LastModifiedDate: 01/02/2018
+        -History:
+            01/02/2018: Creation : Stéphane van Gulick
+       
+            Blog: www.powershelldistrict.com
+            Site Source: www.nosdeputes.fr
     #>
     [CmdletBinding()]
     Param(

@@ -64,8 +64,15 @@ Function Get-RCDossier {
     (Certains champs sont encore vide. Afin de le retourner tous, il faut utiliser la parametre 'Full')
 
     .NOTES
-    Auteur: Stéphane van Gulick
-    Site: PowerShellDistrict.com
+        -Version: 1.0
+        -Author: Stéphane van Gulick 
+        -CreationDate: 01/02/2018
+        -LastModifiedDate: 01/02/2018
+        -History:
+            01/02/2018: Creation : Stéphane van Gulick
+       
+            Blog: www.powershelldistrict.com
+            Site Source: www.nosdeputes.fr
     #>
 
 

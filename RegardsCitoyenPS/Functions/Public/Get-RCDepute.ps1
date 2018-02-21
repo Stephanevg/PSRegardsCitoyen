@@ -22,7 +22,15 @@ Function Get-RCDepute {
     Get-RCDepute -Type Circonscription -Valeur Haut-Rhin | select nom,Sexe,Groupe_sigle
     
     .NOTES
-    General notes
+        -Version: 1.0
+        -Author: Stéphane van Gulick 
+        -CreationDate: 01/02/2018
+        -LastModifiedDate: 01/02/2018
+        -History:
+            01/02/2018: Creation : Stéphane van Gulick
+       
+            Blog: www.powershelldistrict.com
+            Site Source: www.nosdeputes.fr
     #>
 
 
