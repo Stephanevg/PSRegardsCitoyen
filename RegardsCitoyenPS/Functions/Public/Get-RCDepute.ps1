@@ -7,16 +7,22 @@ Function Get-RCDepute {
     Permet de rÃ©cuperer des donnÃ©es statitiques des reprÃ©sentants politique FranÃ§ais.
     
     .PARAMETER Nom
-    Parameter description
+    Permet filtrer la recherche sur le nom de famille d'une député. 
+    (Ce paramètre doit être utilisé obligatoirement avec le paramètre Prénom )
+
+    Note: Le filtrage est effectué coté client, ce qui peut entrainer des effets sur la performance
     
     .PARAMETER Prenom
-    Parameter description
+    Permet filtrer la recherche sur le Prénom d'une député. 
+    (Ce paramètre doit être utilisé obligatoirement avec le paramètre Nom )
+
+    Note: Le filtrage est effectué coté client, ce qui peut entrainer des effets sur la performance
     
     .PARAMETER Id
-    Parameter description
+    Permet de filtrer la recherche sur l'ID d'un député
 
     .PARAMETER NumCirconscription
-
+    Permet de filtrer la recherche sur le numéro de ciconscription d'ou le député à été élue.
 
     Note: Le filtrage est effectué coté client, ce qui peut entrainer des effets sur la performance
 
@@ -63,6 +69,87 @@ Function Get-RCDepute {
     469 Reitzer        Jean-Luc    H 12/29/1951 12:00:00 AM Altkirch (Haut-Rhin)  LR     Haut-Rhin                 3             75
     528 Fuchs          Bruno       H 4/7/1959 12:00:00 AM   Colmar (Haut-Rhin)    MODEM  Haut-Rhin                 6            181
     
+    .EXAMPLE
+
+    Select d'un député par son nom et prénom (La selection que peut ce faire en combinant Nom et prénom)
+
+   Get-RCDepute -Nom Fuchs -Prenom Bruno
+
+
+    id                 : 528
+    Nom                : Fuchs
+    Prenom             : Bruno
+    Sexe               : H
+    DateNaissance      : 4/7/1959 12:00:00 AM
+    LieuNaissance      : Colmar (Haut-Rhin)
+    Groupe             : MODEM
+    NomCirconscription : Haut-Rhin
+    numcirco           : 6
+    PlaceHemicylce     : 181
+    DebutDeMandat      : 6/21/2017 12:00:00 AM
+    Profession         : Industriel-Chef d'entreprise
+    Twitter            : bruno_fuchs
+    NombreDeMandats    : 1
+    partirattfinancier : Mouvement Démocrate
+    autresmandats      :
+    Collaborateurs     :
+    Emails             :
+
+    .EXAMPLE
+    Filtrage sur le numéro de cironscription
+    Get-RCDepute -NumCirconscription 5 | Fomat-Table
+
+    id Nom               Prenom          Sexe DateNaissance          LieuNaissance                        Groupe NomCirconscription   numcirco PlaceHemicylce
+    -- ---               ------          ---- -------------          -------------                        ------ ------------------   -------- --------------
+    32 Abad              Damien             H 4/5/1980 12:00:00 AM   Nîmes (Gard)                         LR     Ain                         5             78
+    44 Vatin             Pierre             H 8/21/1967 12:00:00 AM  Saint-Quentin (Aisne)                LR     Oise                        5             31
+    60 Dubois            Marianne           F 12/17/1957 12:00:00 AM Corbeil-Essonnes (Essonne)           LR     Loiret                      5             20
+    68 Masséglia         Denis              H 4/11/1981 12:00:00 AM  Nice (Alpes-Maritimes)               LREM   Maine-et-Loire              5            377
+    79 Paris             Didier             H 2/14/1954 12:00:00 AM  Paris (Paris)                        LREM   Côte-d'Or                   5            403
+    81 Riester           Franck             H 1/3/1974 12:00:00 AM   Paris 15ème (Paris)                  UAI    Seine-et-Marne              5            124
+    90 Lenne             Marion             F 11/20/1974 12:00:00 AM Gardanne (Bouches-du-Rhône)          LREM   Haute-Savoie                5            314
+    92 Sarles            Nathalie           F 4/17/1962 12:00:00 AM  Valence (Drôme)                      LREM   Loire                       5            290
+    94 Chassaigne        André              H 7/2/1950 12:00:00 AM   Clermont-Ferrand (Puy-de-Dôme)       GDR    Puy-de-Dôme                 5            587
+    122 Bouillon          Christophe         H 3/4/1969 12:00:00 AM   Rouen (Seine-Maritime)               NG     Seine-Maritime              5            520
+    124 Michel-Kleisbauer Philippe           H 3/6/1969 12:00:00 AM   Draguignan (Var)                     MODEM  Var                         5            259
+    131 Melchior          Graziella          F 4/6/1960 12:00:00 AM   Brest (Finistère)                    LREM   Finistère                   5            231
+    137 El Haïry          Sarah              F 3/16/1989 12:00:00 AM  (Loir-et-Cher)                       MODEM  Loire-Atlantique            5            172
+    138 Potier            Dominique          H 3/17/1964 12:00:00 AM  Toul (Meurthe-et-Moselle)            NG     Meurthe-et-Moselle          5            514
+    146 Grelier           Jean-Carles        H 3/15/1966 12:00:00 AM  Mans (Sarthe)                        LR     Sarthe                      5             71
+    160 Portarrieu        Jean-François      H 10/14/1965 12:00:00 AM Toulouse (Haute-Garonne)             LREM   Haute-Garonne               5            645
+    176 Lazaar            Fiona              F 9/19/1985 12:00:00 AM  (Val-d'Oise)                         LREM   Val-d'Oise                  5            418
+    181 Bouyx             Bertrand           H 5/26/1970 12:00:00 AM  Juvisy-sur-Orge (Essonne)            LREM   Calvados                    5            210
+    185 Gauvain           Raphaël            H 4/10/1973 12:00:00 AM  Paris 14ème (Paris)                  LREM   Saône-et-Loire              5            241
+    196 Brocard           Blandine           F 11/3/1981 12:00:00 AM  Strasbourg (Bas-Rhin)                LREM   Rhône                       5            323
+    225 Huppé             Philippe           H 2/12/1968 12:00:00 AM  Mazamet (Tarn)                       LREM   Hérault                     5            395
+    228 Gaillard          Olivier            H 2/28/1967 12:00:00 AM  Nîmes (Gard)                         LREM   Gard                        5            243
+    235 Lagarde           Jean-Christophe    H 10/24/1967 12:00:00 AM Châtellerault (Vienne)               UAI    Seine-Saint-Denis           5            135
+    245 Kamowski          Catherine          F 4/8/1958 12:00:00 AM   Valenciennes (Nord)                  LREM   Isère                       5            335
+    274 Bothorel          Éric               H 10/20/1966 12:00:00 AM Paimpol (Côtes-d'Armor)              LREM   Côtes-d'Armor               5            554
+    294 Krabal            Jacques            H 4/10/1948 12:00:00 AM  Epieds (Aisne)                       LREM   Aisne                       5            542
+    296 Braun-Pivet       Yaël               F 12/7/1970 12:00:00 AM  Nancy (Meurthe-et-Moselle)           LREM   Yvelines                    5            481
+    298 Becht             Olivier            H 4/28/1976 12:00:00 AM  Strasbourg (Bas-Rhin)                UAI    Haut-Rhin                   5            154
+    300 O'Petit           Claire             F 10/15/1949 12:00:00 AM Epinay-sur-Seine (Seine-Saint-Denis) LREM   Eure                        5            304
+
+    .EXAMPLE
+
+    Filtrage sur tous les députés qui ont été élus dans la circonscription numéro 5, et qui sont membre du groupe politique 'LR' (Les républicains)
+
+    Get-RCDepute -NumCirconscription 5 | where {$_.Groupe -eq 'LR'} | ft
+
+    id Nom      Prenom      Sexe DateNaissance          LieuNaissance                Groupe NomCirconscription numcirco PlaceHemicylce
+    -- ---      ------      ---- -------------          -------------                ------ ------------------ -------- --------------
+    32 Abad     Damien         H 4/5/1980 12:00:00 AM   Nîmes (Gard)                 LR     Ain                       5             78
+    44 Vatin    Pierre         H 8/21/1967 12:00:00 AM  Saint-Quentin (Aisne)        LR     Oise                      5             31
+    60 Dubois   Marianne       F 12/17/1957 12:00:00 AM Corbeil-Essonnes (Essonne)   LR     Loiret                    5             20
+    146 Grelier  Jean-Carles    H 3/15/1966 12:00:00 AM  Mans (Sarthe)                LR     Sarthe                    5             71
+    332 Aubert   Julien         H 6/11/1978 12:00:00 AM  Marseille (Bouches-du-Rhône) LR     Vaucluse                  5            136
+    402 Quentin  Didier         H 12/23/1946 12:00:00 AM Royan (Charente-Maritime)    LR     Charente-Maritime         5             28
+    408 Brenier  Marine         F 8/11/1986 12:00:00 AM  Nice (Alpes-Maritimes)       LR     Alpes-Maritimes           5            150
+    430 Carrez   Gilles         H 8/29/1948 12:00:00 AM  Paris (Paris)                LR     Val-de-Marne              5             92
+    475 Genevard Annie          F 9/7/1956 12:00:00 AM   Audincourt (Doubs)           LR     Doubs                     5             90
+    526 Huyghe   Sébastien      H 10/25/1969 12:00:00 AM Béthune (Pas-de-Calais)      LR     Nord                      5             43
+
     .NOTES
         -Version: 1.0
         -Author: Stéphane van Gulick 

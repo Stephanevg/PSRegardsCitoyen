@@ -62,8 +62,8 @@ Les points décrivent la liste actuel des tâches à faire:
         - [ ] Get-RCDossier
 - [ ] Improve Error handling
 - [ ] Documentation
-    - [ ] about_RegardsCitoyenPs
-    - [ ] Get-RCDepute
+    - [X] about_RegardsCitoyenPs
+    - [X] Get-RCDepute
     - [ ] Get-RCDocument
     - [ ] Get-RCDossier
     - [ ] Get-RCGroupePolitique
