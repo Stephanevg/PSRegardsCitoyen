@@ -13,7 +13,7 @@ RootModule = 'RegardsCitoyenPS.psm1'
 
 # Version number of this module.
 
-ModuleVersion = '0.6.2.1'
+ModuleVersion = '0.6.2.2'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()

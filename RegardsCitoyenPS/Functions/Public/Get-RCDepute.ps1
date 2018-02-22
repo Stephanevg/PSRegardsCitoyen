@@ -199,7 +199,18 @@ Function Get-RCDepute {
 
         "slug"{
             $url = $Rc_data.urls.Deputes.Replace("deputes/enmandat/json",$Slug) + "/json"
-            $entry = (Invoke-RestMethod -Uri $url).Depute
+
+            try{
+                $entry = (Invoke-RestMethod -Uri $url -ErrorAction Stop).depute
+            }Catch [System.Net.WebException]{
+                write-warning "Server indisponible: Merci de vérifier vôtre connection internet."
+                break
+               
+            }Catch{
+                $_.exception.message
+            }
+
+            
             
             $Collaborateurs = @()
             foreach ($col in $entry.Collaborateurs.Collaborateur){

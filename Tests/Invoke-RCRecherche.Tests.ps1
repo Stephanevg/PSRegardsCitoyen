@@ -10,16 +10,16 @@ set-location -Path $RootFolder.FullName
 
 Write-Verbose "Importing module"
 
-import-module .\RegardsCitoyen -Force
+import-module .\RegardsCitoyenPS -Force
 
 Context "Testing Regards Citoyen"{
     Describe "Invoke-RCRecherche" {
 
         it "Should throw an error" {
-            {Invoke-RCRecherche} | should throw
+            {Invoke-RCRecherche -type} | should throw
         }
 
-        it "Should return list of Deputes (Empty Param)" {
+        it "Should return list at least 2 results" {
             $obj = Invoke-RCRecherche -Type Texteloi -Text "cumul" -limit 7 -Format json
 
             $obj | should not benullorempty

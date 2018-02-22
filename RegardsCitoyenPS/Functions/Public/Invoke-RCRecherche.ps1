@@ -168,14 +168,11 @@ Function Invoke-RCRecherche {
 
                 $url = $RC_Data.urls.recherche + $text + "?object_name=" + $Type 
 
-                if($Format){
-                    $url = $url + "&format=$Format"
-                }
 
                 if($PSCmdlet.MyInvocation.BoundParameters.Keys -contains "Limit"){
                     $url = $url + "&count=$limit"
                 }
-            
+                $url = $url + "&format=$Format"
             Break;
         }
         Default{

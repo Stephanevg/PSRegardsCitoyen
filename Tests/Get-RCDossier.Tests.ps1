@@ -10,7 +10,7 @@ set-location -Path $RootFolder.FullName
 
 Write-Verbose "Importing module"
 
-import-module .\RegardsCitoyen -Force
+import-module .\RegardsCitoyenPS -Force
 
 Context "Testing Regards Citoyen"{
     Describe "Get-RCDossier" {
