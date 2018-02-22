@@ -1,5 +1,13 @@
 # RegardsCitoyenPS
 
+## Status
+
+Global Status:
+[![Build status](https://ci.appveyor.com/api/projects/status/l96c3v2raggh1unv?svg=true)](https://ci.appveyor.com/project/Stephanevg/regardscitoyenps)
+
+Master Branch Status:
+[![Build status](https://ci.appveyor.com/api/projects/status/l96c3v2raggh1unv/branch/master?svg=true)](https://ci.appveyor.com/project/Stephanevg/regardscitoyenps/branch/master)
+
 Ce projet est un projet qui permet de fournir à tout citoyen, la possibilité de rechercher des données de la vie politique Française en utilisant Windows PowerShell par le biais de l'API RegardsCitoyen.
 
 Ce projet est une initiative personnel, et n'engage en rien RegardsCitoyens.
