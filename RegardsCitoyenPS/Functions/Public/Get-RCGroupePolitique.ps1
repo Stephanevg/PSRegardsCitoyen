@@ -8,8 +8,8 @@ Function Get-RCGroupePolitique {
     Liste tous les groupes politique Français aujourd'hui en fonction.
     les données sources sont de www.nosdeputes.fr
     
-    .PARAMETER Nom
-    Permet de filtrer sur un groupe politique en particuler à partir de son nom.
+    .PARAMETER Acronyme
+    Permet de filtrer sur un groupe politique en particuler à partir de son Acronyme.
     
     Note: Le filtrage est fait en mémoire et peut est gourmand en ressource.
     
@@ -21,7 +21,7 @@ Function Get-RCGroupePolitique {
     .EXAMPLE
     La commande suivante retourne la liste de tous les membre du groupe UAI
 
-   Get-RCGroupePolitique -Nom UAI -ListMembres | format-table
+   Get-RCGroupePolitique -Acronyme UAI -ListMembres | format-table
 
     id Nom                Prenom          Sexe DateNaissance          LieuNaissance                       Groupe NomCirconscription              numcirco PlaceHem
                                                                                                                                                             icylce
@@ -74,7 +74,7 @@ Function Get-RCGroupePolitique {
     Param(
 
         [Parameter(Mandatory=$true,ParameterSetName="get")]
-        [Parti]$Nom,
+        [Parti]$Acronyme,
 
         #bug: nom should be mandatory when ListMembers is called
         [Parameter(Mandatory=$false,ParameterSetName="get")]
@@ -87,7 +87,7 @@ Function Get-RCGroupePolitique {
             #I had to use this construct since having two parametersetnames seemed to simply not wanting to work.
             if ($ListMembres){
                 write-verbose "[MEMBRES]Telechargement des données depuis internet..."
-                $url = ($RC_Data.Urls.groupepolitique).Replace("/json",("/" + $Nom.ToString() + "/json"))
+                $url = ($RC_Data.Urls.groupepolitique).Replace("/json",("/" + $Acronyme.ToString() + "/json"))
 
                 try{
                     $data = (Invoke-RestMethod -Uri $url -ErrorAction Stop).deputes
@@ -141,7 +141,7 @@ Function Get-RCGroupePolitique {
                 }
 
                 
-                $fro = $all | ? {$_.acronyme -eq $Nom}
+                $fro = $all | ? {$_.acronyme -eq $Acronyme}
                 [GroupePolitique]::new($fro.id,$fro.slug,$fro.nom,$fro.acronyme,$fro.groupe_actuel,$fro.couleur,$fro.order,$fro.type,$fro.url_nosdeputes,$fro.url_NosDeputes_api)
                 break;
             }

@@ -13,7 +13,7 @@ RootModule = 'RegardsCitoyenPS.psm1'
 
 # Version number of this module.
 
-ModuleVersion = '0.6.2.0'
+ModuleVersion = '0.6.2.1'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -31,7 +31,7 @@ CompanyName = 'District'
 Copyright = '(c) 2018 Stephane van Gulick. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'Powershell module pour exploiter les données de la vie politiques Francaise'
+Description = "Module PowerShell  permettant d'exploiter les données de la vie politique Francaise mis a disposition par RegardsCitoyen.Org"
 
 # Minimum version of the Windows PowerShell engine required by this module
 PowerShellVersion = '5.0'

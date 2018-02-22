@@ -10,7 +10,7 @@ set-location -Path $RootFolder.FullName
 
 Write-Verbose "Importing module"
 
-import-module .\RegardsCitoyen -Force
+import-module .\RegardsCitoyenPS -Force
 
 Context "Testing Regards Citoyen"{
     Describe "Get-RCGroupePolitique" {
@@ -37,25 +37,25 @@ Context "Testing Regards Citoyen"{
         }
 
         it "Should return only one object (Param Nom 'UAI' )" {
-            $Groupe = Get-RCGroupePolitique -Nom "UAI"
+            $Groupe = Get-RCGroupePolitique -Acronyme "UAI"
             $Groupe.count | should be 1
 
         }
 
         it "Should return right object (Param Nom 'UAI')" {
-            $Groupe = Get-RCGroupePolitique -Nom "UAI"
+            $Groupe = Get-RCGroupePolitique -Acronyme "UAI"
             $Groupe.Acronyme -eq "UAI" | should be $true
             
         }
 
         it "Should return List members (Param -Nom 'UAI' -ListMembre)" {
-            $Groupe = Get-RCGroupePolitique -Nom "UAI" -ListMembre
+            $Groupe = Get-RCGroupePolitique -Acronyme "UAI" -ListMembre
             $Groupe.count -gt 1 | should be $true
             
         }
 
         it "Should return List members of type 'Depute' (Param -Nom 'UAI' -ListMembre)" {
-            $Groupe = Get-RCGroupePolitique -Nom "UAI" -ListMembre
+            $Groupe = Get-RCGroupePolitique -Acronyme "UAI" -ListMembre
             $r = Get-Random -Minimum 1 -Maximum $Groupe.count
             $Groupe[$r].GetType().Name | should be "Depute"
             
