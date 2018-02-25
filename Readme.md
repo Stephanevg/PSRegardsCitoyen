@@ -6,6 +6,7 @@
 | Overall  | [![Build status](https://ci.appveyor.com/api/projects/status/l96c3v2raggh1unv?svg=true)](https://ci.appveyor.com/project/Stephanevg/regardscitoyenps)  |
 | Master  | [![Build status](https://ci.appveyor.com/api/projects/status/l96c3v2raggh1unv/branch/master?svg=true)](https://ci.appveyor.com/project/Stephanevg/regardscitoyenps/branch/master)
 
+> Pour rapporter un bug, ou pour suggérer une fonctionnalité, merci créer une nouvelle _**issue**_ sur [Github Issues](https://github.com/Stephanevg/RegardsCitoyenPS/issues)
 
 # Introduction
 
