@@ -1,10 +1,10 @@
 Function Get-RCDepute {
     <#
     .SYNOPSIS
-    #Recupere des donnÃ©es statitques d'un ou plusieurs dÃ©putÃ©(s)
+    Recupere des données statitques d'un ou plusieurs député(s)
     
     .DESCRIPTION
-    Permet de rÃ©cuperer des donnÃ©es statitiques des reprÃ©sentants politique FranÃ§ais.
+    Permet de récuperer des donnÃ©es statitiques des représentants politique Français.
     
     .PARAMETER Nom
     Permet filtrer la recherche sur le nom de famille d'une député. 

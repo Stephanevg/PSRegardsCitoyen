@@ -5,7 +5,7 @@
 |---|---|
 | Overall  | [![Build status](https://ci.appveyor.com/api/projects/status/l96c3v2raggh1unv?svg=true)](https://ci.appveyor.com/project/Stephanevg/regardscitoyenps)  |
 | Master  | [![Build status](https://ci.appveyor.com/api/projects/status/l96c3v2raggh1unv/branch/master?svg=true)](https://ci.appveyor.com/project/Stephanevg/regardscitoyenps/branch/master)
-  |
+
 
 # Introduction
 
@@ -31,7 +31,20 @@ L'installation devrait pas prendre plus de quelques secondes.
 
 ```Powershell
 
-Get-Command -module RegardsCitoyenPS
+C:\WINDOWS\system32 > get-command -Module RegardsCitoyenPS
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Function        Get-RCDepute                                       0.6.2.0    RegardsCitoyenPS
+Function        Get-RCDocument                                     0.6.2.0    RegardsCitoyenPS
+Function        Get-RCDossier                                      0.6.2.0    RegardsCitoyenPS
+Function        Get-RCGroupePolitique                              0.6.2.0    RegardsCitoyenPS
+Function        Get-RCIntervention                                 0.6.2.0    RegardsCitoyenPS
+Function        Get-RCOrganismeExtraParlementaire                  0.6.2.0    RegardsCitoyenPS
+Function        Get-RCOrganismeParlementaire                       0.6.2.0    RegardsCitoyenPS
+Function        Get-RCSeance                                       0.6.2.0    RegardsCitoyenPS
+Function        Get-RCSynthese                                     0.6.2.0    RegardsCitoyenPS
+Function        Invoke-RCRecherche                                 0.6.2.0    RegardsCitoyenPS
 
 ```
 
@@ -69,7 +82,7 @@ Get-Help Get-RCDepute -Examples
 
 ```
 
-## DEcouverte du module RegardsCitoyenPS
+## Decouverte du module RegardsCitoyenPS
 
 ### Lister tous les députés actuellement en mandat
 
@@ -178,10 +191,21 @@ A des fins d'optimisation, pas toutes les données sont directement retournés. 
 
 En fonction du dossier, ceci peut durer plus ou moins longtemps. Comme le dossier concernant "la confiance dans la vie politique" à été très discuté, il y a eu beaucoup de documents / interventions produits, venant de beacoup d'intervenants (députés) different. Donc il sera un peu long à charger.
 
+# Liens
+
+|Site|Description|
+|---|---|
+| [PowerShellDistrict.com](http://www.powershelldistrict.com/introduction-regardscitoyenps) | Blog de l'auteur (Stéphane van Gulick) contenant des details techniques sur le projet RegardsCitoyenPS |
+|[Assemblee-Nationale.fr](http://www.assemblee-nationale.fr/)| Site officiel de l'assemblée Nationale |
+|[Senat.fr](http://www.senat.fr/)| Site officiel de du sénat |
+|[RegardsCitoyen.Org](http://www.regardscitoyen.org/)| Site officiel de Regards Citoyen |
+|[Nosdeputes.fr](http://www.nosdeptues.fr/)| Site officiel de "nosdéputes.fr" |
+|[Page Github de Nos députes](https://github.com/regardscitoyens/nosdeputes.fr/blob/master/doc/api.md)| Page github expliquant le fonctionnement de l'API de RegardsCitoyen.org  |
+| | |
+## Tâches
 
 
-Les points décrivent la liste actuel des tâches à faire:
-
+- [ ] Migrer la liste des tâches à faire dans Github Issues
 - [X] Get-RCDepute
     - [X] Parametre 'Nom'
     - [X] Paramtre 'Prenom'
