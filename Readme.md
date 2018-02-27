@@ -6,7 +6,7 @@
 | Overall  | [![Build status](https://ci.appveyor.com/api/projects/status/l96c3v2raggh1unv?svg=true)](https://ci.appveyor.com/project/Stephanevg/regardscitoyenps)  |
 | Master  | [![Build status](https://ci.appveyor.com/api/projects/status/l96c3v2raggh1unv/branch/master?svg=true)](https://ci.appveyor.com/project/Stephanevg/regardscitoyenps/branch/master)
 
-> Pour rapporter un bug, ou pour suggérer une fonctionnalité, merci créer une nouvelle _**issue**_ sur [Github Issues](https://github.com/Stephanevg/RegardsCitoyenPS/issues)
+> Pour rapporter un bug, ou pour suggérer une fonctionnalité, merci de créer une nouvelle _**issue**_ sur [Github Issues](https://github.com/Stephanevg/RegardsCitoyenPS/issues)
 
 # Introduction
 
@@ -199,7 +199,7 @@ En fonction du dossier, ceci peut durer plus ou moins longtemps. Comme le dossie
 | [PowerShellDistrict.com](http://www.powershelldistrict.com/introduction-regardscitoyenps) | Blog de l'auteur (Stéphane van Gulick) contenant des details techniques sur le projet RegardsCitoyenPS |
 |[Assemblee-Nationale.fr](http://www.assemblee-nationale.fr/)| Site officiel de l'assemblée Nationale |
 |[Senat.fr](http://www.senat.fr/)| Site officiel de du sénat |
-|[RegardsCitoyen.Org](http://www.regardscitoyen.org/)| Site officiel de Regards Citoyen |
+|[RegardsCitoyens.Org](http://www.regardscitoyens.org/)| Site officiel de Regards Citoyen |
 |[Nosdeputes.fr](http://www.nosdeptues.fr/)| Site officiel de "nosdéputes.fr" |
 |[Page Github de Nos députes](https://github.com/regardscitoyens/nosdeputes.fr/blob/master/doc/api.md)| Page github expliquant le fonctionnement de l'API de RegardsCitoyen.org  |
 | | |
