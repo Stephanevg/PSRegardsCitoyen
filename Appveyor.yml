@@ -1,4 +1,9 @@
 version: 1.0.{build}
+
+environment:
+  PSgalleryKey:
+    secure: wl8DNkBd6QUSBAEWxCNTTW+cVn32ub6kWSqZxAUrpx4/QPnWYGiLWEj+ZaFp5cuA
+
 install:
 - ps: >-
     Install-PackageProvider -Name NuGet -Force
@@ -16,3 +21,10 @@ test_script:
     (New-Object 'System.Net.WebClient').UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\TestsResults.xml))
 
     if ($res.FailedCount -gt 0) { throw "$($res.FailedCount) tests failed."}
+
+    if($res.FailedCount -eq 0 -and $APPVEYOR_REPO_COMMIT_MESSAGE -match '^.*dep-psgallery$'){
+        publish-module -Name RegardsCitoyenPS -NuGetApiKey $PSgalleryKey
+        write-host "Module deployed to the psgallery" -forgroundcolor green
+    }else{
+        write-host "Module not deployed to the psgallery" -forgroundcolor Yellow
+    }
