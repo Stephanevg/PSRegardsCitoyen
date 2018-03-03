@@ -96,10 +96,10 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = @("Regards Citoyen","Depute","Senateur","Assemblée Nationale","Senat","France","Democratie","Open Data")
+        Tags = @("RegardsCitoyen","Depute","Senateur","AssembleeNationale","Senat","France","Democratie","OpenData")
 
         # A URL to the license for this module.
-        # LicenseUri = ''
+        LicenseUri = 'http://www.powershelldistrict.com/introduction-regardscitoyenps/LICENCE'
 
         # A URL to the main website for this project.
          ProjectUri = 'http://www.powershelldistrict.com/introduction-regardscitoyenps'
