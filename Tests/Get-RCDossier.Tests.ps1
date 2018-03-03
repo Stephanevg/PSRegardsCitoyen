@@ -54,6 +54,24 @@ Context "Testing Regards Citoyen"{
             #Il semblerais que SousSection ne soit pas encore implementer chez RegardCitoyen.
             #$Dossier.SousSections | should not benullorempty
         }
+
+        it "Param -> -id 346 -Full: Should return complete object with correct values" {
+            #test for fix #5 https://github.com/Stephanevg/RegardsCitoyenPS/issues/5 due to ID was INT
+            $Dossier = Get-RCDossier -id 346 -Full
+            $Dossier.id_seances -contains "153" | should be $true
+            $Dossier.id_seances -contains "155" | should be $true
+            $Dossier.id_seances -contains "232" | should be $true
+            $Dossier.Seances 
+            $Dossier.Documents | should not benullorempty
+            
+            #Some random dossiers that failed to be created due to ID not ok when INT (changed to String in #5)
+            $Dossier.id_documents -contains "164" | should be $true
+            $Dossier.id_documents -contains "164-a0" | should be $true
+            $Dossier.id_documents -contains "164-a1" | should be $true
+            $Dossier.id_documents -contains "164-aCOMPA" | should be $true
+            $Dossier.id_documents -contains "265" | should be $true
+
+        }
     }
     
 }

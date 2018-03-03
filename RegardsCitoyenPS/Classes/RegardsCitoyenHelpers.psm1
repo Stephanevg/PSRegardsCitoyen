@@ -207,11 +207,11 @@ Class Dossier {
     [String[]]$SousSection
     hidden [string[]]$Id_intervenants
     hidden [string[]]$id_seances
-    hidden [int[]]$id_documents
-    hidden [int[]]$id_soussections
+    hidden [string[]]$id_documents
+    hidden [string[]]$id_soussections
 
 
-    Dossier([int]$id,[String]$Titre,[int]$NbInterventions,[DateTime]$minDate,[DateTime]$MaxDate,[string[]]$Id_intervenants,[String[]]$id_seances,[int[]]$id_documents,[int[]]$id_soussections){
+    Dossier([int]$id,[String]$Titre,[int]$NbInterventions,[DateTime]$minDate,[DateTime]$MaxDate,[string[]]$Id_intervenants,[String[]]$id_seances,[string[]]$id_documents,[string[]]$id_soussections){
         $this.id = $id
         $this.Titre = $Titre
         $this.NbInterventions = $NbInterventions
@@ -273,7 +273,7 @@ Class Dossier {
         
     }
 
-    [Void] _LoadSousSections(){
+    hidden [Void] _LoadSousSections(){
         #Jusqu'a  présent, j'ai trouver aucun dossier qui contenait des sous sections.
         #Pas implémentée du coté de NosDeputes.fr?
         write-verbose "Chargement des seances.."
@@ -318,7 +318,7 @@ Class Circonscription {
 
 
 Class Document {
-    [int]$id
+    [string]$id
     [String]$titre
     [string]$nbcommentaires
     [String]$legislature
@@ -334,7 +334,7 @@ Class Document {
     [String]$Contenue
     hidden[String]$urlNosDeputes
 
-    Document ([int]$id,[String]$titre,[String]$nbcommentaires,[string]$legislature,[string]$annexe,[string]$type,[String]$typeDetails,[String]$Categorie,[string]$iddossieran,[datetime]$date,[string]$Sourceurl,[String]$organismeid,[string]$Signataires,[string]$Contenue,[string]$urlNosDeputes){
+    Document ([string]$id,[String]$titre,[String]$nbcommentaires,[string]$legislature,[string]$annexe,[string]$type,[String]$typeDetails,[String]$Categorie,[string]$iddossieran,[datetime]$date,[string]$Sourceurl,[String]$organismeid,[string]$Signataires,[string]$Contenue,[string]$urlNosDeputes){
     
         $this.id = $id
         $this.titre = $titre
@@ -410,7 +410,13 @@ Class Organisme{
     }
 
     [Depute]GetPresident(){
-        #tbd
+        if (!$this.Membres){
+            $this._LoadMembres()
+        }
+
+        $President = $this.Membres | ? {$_.Fonction -eq "President"}
+        return $President
+
         return $this.Membres
     }
     [Depute[]]GetVicePresident(){

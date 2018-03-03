@@ -19,7 +19,7 @@ Function Get-RCDossier {
 
     
     .EXAMPLE
-    Get-RCProjetDeLoi
+    Get-RCDossier
 
     id              : 2072
     Titre           : Accès à l'eau
@@ -48,7 +48,7 @@ Function Get-RCDossier {
 
     Filtrage sur un dossier précis via le paramètre 'ID'
 
-    Get-RCProjetDeLoi -id 1235
+    Get-RCDossier -id 1235
 
 
     id              : 1235
@@ -64,11 +64,12 @@ Function Get-RCDossier {
     (Certains champs sont encore vide. Afin de le retourner tous, il faut utiliser la parametre 'Full')
 
     .NOTES
-        -Version: 1.0
+        -Version: 1.1
         -Author: Stéphane van Gulick 
         -CreationDate: 01/02/2018
         -LastModifiedDate: 01/02/2018
         -History:
+            03/03/2018: implemented fix #5 : Stéphane van Gulick
             01/02/2018: Creation : Stéphane van Gulick
        
             Blog: www.powershelldistrict.com
@@ -110,12 +111,12 @@ Function Get-RCDossier {
                 
                 $ret = (invoke-restmethod $Entry.url_nosdeputes_api).Section
 
-                $id_sceances = $ret.seances.seance.id
+                $id_seances = $ret.seances.seance.id
                 $id_intervenants = $ret.intervenants.parlementaire.slug
                 $id_soussections = $ret.soussections.soussection.id
                 $id_documents = $ret.documents.document.id
-
-                $Dos = [Dossier]::New($ret.id,$ret.Titre,$ret.nb_interventions,$ret.min_date,$ret.max_date,$id_intervenants,$id_documents,$id_sceances,$id_soussections)
+                
+                $Dos = [Dossier]::New($ret.id,$ret.Titre,$ret.nb_interventions,$ret.min_date,$ret.max_date,$id_intervenants,$id_seances,$id_documents,$id_soussections)
                 
                 if ($Full){
                 
@@ -143,13 +144,13 @@ Function Get-RCDossier {
 
            
             
-            $id_sceances = $ret.seances.seance.id
+            $id_seances = $ret.seances.seance.id
                 $id_intervenants = $ret.intervenants.parlementaire.slug #| Out-String
                 $id_soussections = $ret.soussections.soussection.id
                 $id_documents = $ret.documents.document.id
 
-
-                $Dos = [Dossier]::New($ret.id,$ret.Titre,$ret.nb_interventions,$ret.min_date,$ret.max_date,$id_intervenants,$id_documents,$id_sceances,$id_soussections)
+                
+                $Dos = [Dossier]::New($ret.id,$ret.Titre,$ret.nb_interventions,$ret.min_date,$ret.max_date,$id_intervenants,$id_seances,$id_documents,$id_soussections)
                 if ($Full){
                 
                     $Dos.Full()

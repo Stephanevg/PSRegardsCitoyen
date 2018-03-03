@@ -13,7 +13,7 @@ RootModule = 'RegardsCitoyenPS.psm1'
 
 # Version number of this module.
 
-ModuleVersion = '0.6.2.2'
+ModuleVersion = '0.6.2.3'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -96,13 +96,13 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        # Tags = @()
+        Tags = @("Regards Citoyen","Depute","Senateur","Assemblée Nationale","Senat","France","Democratie","Open Data")
 
         # A URL to the license for this module.
         # LicenseUri = ''
 
         # A URL to the main website for this project.
-        # ProjectUri = ''
+         ProjectUri = 'http://www.powershelldistrict.com/introduction-regardscitoyenps'
 
         # A URL to an icon representing this module.
         # IconUri = ''
