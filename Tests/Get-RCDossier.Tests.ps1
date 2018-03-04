@@ -55,7 +55,7 @@ Context "Testing Regards Citoyen"{
             #$Dossier.SousSections | should not benullorempty
         }
 
-        it "Param -> -id 346 -Full: Should return complete object with correct values" {
+        it "Param -> -id 346 -Full: Should return complete object with correct values (fix #5 test)" {
             #test for fix #5 https://github.com/Stephanevg/RegardsCitoyenPS/issues/5 due to ID was INT
             $Dossier = Get-RCDossier -id 346 -Full
             $Dossier.id_seances -contains "153" | should be $true
@@ -71,6 +71,13 @@ Context "Testing Regards Citoyen"{
             $Dossier.id_documents -contains "164-aCOMPA" | should be $true
             $Dossier.id_documents -contains "265" | should be $true
 
+        }
+
+        it "Param -> -id 511 -Full: Should return complete object with correct values (Fix #4 tests)" {
+            #test for fix #5 https://github.com/Stephanevg/RegardsCitoyenPS/issues/4 
+            $Dossier = Get-RCDossier -id 511 -Full
+            $Dossier.Documents.id -contains "150" | should be $true
+            $Dossier.Documents.id -contains "258" | should be $true
         }
     }
     

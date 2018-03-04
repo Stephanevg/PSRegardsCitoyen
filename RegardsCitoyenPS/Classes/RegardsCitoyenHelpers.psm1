@@ -203,7 +203,7 @@ Class Dossier {
     [int]$NbInterventions
     [Object[]]$Intervenants
     [Intervention[]]$Seances
-    [String[]]$Documents
+    [Document[]]$Documents
     [String[]]$SousSection
     hidden [string[]]$Id_intervenants
     hidden [string[]]$id_seances
