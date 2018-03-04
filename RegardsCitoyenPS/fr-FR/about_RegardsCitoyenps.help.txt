@@ -2,26 +2,27 @@ TOPIC
     about_RegardsCitoyenPS
 
 SHORT DESCRIPTION
-    Ce module powershell permet d'analyzer les données de la vie politique Française, mis a disposition par "Regards Citoyen".
+    Ce module powershell permet d'analyser les données de la vie politique Française, mis a disposition par "Regards Citoyens".
 LONG DESCRIPTION
     Les données de la vie politique Française sont mis à disposition à tous les citoyens Français via les site webs suivants:
     www.assemblee-nationale.Fr
     www.senat.Fr
 
-    Toutes les données sont mis à disposition sous leur forme de présentation finale, et sont uniquement bon pour un affiche. 
-    Les données mis à disposition ne sont donc pas facilement cumulable, analysable de manière automatisée.
-    RegardsCitoyen à créer le site www.nosdeputes.fr qui fait un synthèse globale de ce que nous mis à disposition l'état, et y éffectue une analyse plus étendue.
-    Le site www.NosDeputes.fr met les données qu'ils ont extrait des différent site webs également à disposition via un API (Application Programming Interface).
+    Toutes les données mises à disposition sont déjà traitées pour un affichage web. Dans leur forme actuelle, les données ne peuvent pas               
+    être traitées en masse. 
+    Les données mises à disposition ne sont donc pas facilement cumulables, analysable de manière automatisée.
+    RegardsCitoyen à créé le site www.nosdeputes.fr qui fait une synthèse globale de ce que nous a mis à disposition l'état, et y éffectue une analyse plus étendue.
+    Le site www.NosDeputes.fr met les données qu'ils ont extraites des différents sites webs également à disposition via un API (Application Programming Interface).
 
-    Le module powershell RegardsCitoyenPS ce base sur l'API mis à disposition par RegardsCitoyen, sauf pour la liste des cmdlets suivantes:
+    Le module powershell RegardsCitoyenPS se base sur l'API mis à disposition par RegardsCitoyens, sauf pour la liste des cmdlets suivantes:
     -> N/A
 
-EXAMPLES
+EXEMPLES
     #En premier lieu il faut importer le module:
 
     Import-Module RegardsCitoyenPS
 
-    #Le module met à disposition un ensemble de commands (appelées cmdlets) qui permet de récuperer et de travailler sur les données.
+    #Le module met à disposition un ensemble de commandes (appelées cmdlets) qui permet de récuperer et de travailler sur les données.
     La liste est actuellement composé de 11 cmdlet:
 
     get-command -Module RegardsCitoyenPS | select Name,version
@@ -41,7 +42,7 @@ EXAMPLES
     Invoke-RCRecherche                0.5.7
 
 
-    #Retourne la liste des députes actuellement en mandat
+    #Retourne la liste des députés actuellement en mandat
     Get-RCDepute
 
 
@@ -86,7 +87,7 @@ EXAMPLES
         (...)
 
 
-    #Retourne la liste complete de tous les groupes politique Français existant actuellement.
+    #Retourne la liste complète de tous les groupes politique Français existant actuellement.
     Get-RCGroupePolitique
 
 
@@ -166,7 +167,7 @@ EXAMPLES
         Documents       : {Document, Document, Document}
         SousSection     :
 
-        #Il est recommandé de retourner le résultat dans un variable pour un traitement futur:
+        #Il est recommandé de retourner le résultat dans une variable pour un traitement futur:
 
         $Dossier = Get-RCDossier -id 2025 -Full
 
@@ -176,7 +177,7 @@ EXAMPLES
 
          --> 33
 
-        #Pour identifier quel députés sont intervenues sur ce dossier:
+        #Pour identifier quel députés sont intervenus sur ce dossier:
 
         $Dossier.Intervenants | Format-Table
 
@@ -217,7 +218,7 @@ EXAMPLES
         557 Trisse          Nicole          F 6/29/1963 12:00:00 AM  Sarreguemines (Moselle)                LREM   Moselle                     5            446
 
 KEYWORDS
-    RegardsCitoyen
+    RegardsCitoyens
     France
 
 SEE ALSO
