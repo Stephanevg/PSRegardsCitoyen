@@ -4,25 +4,23 @@ TOPIC
 SHORT DESCRIPTION
     Ce module powershell permet d'analyzer les données de la vie politique Française, mis a disposition par "Regards Citoyen".
 LONG DESCRIPTION
-    Les données de la vie politique Française sont mis à disposition à tous les citoyens Français via les site webs suivants:
+    Les données de la vie politique Française sont mis à disposition à tous les citoyens Français via les site web officiels suivants:
     www.assemblee-nationale.Fr
     www.senat.Fr
 
-    Toutes les données sont mis à disposition sous leur forme de présentation finale, et sont uniquement bon pour un affiche. 
-    Les données mis à disposition ne sont donc pas facilement cumulable, analysable de manière automatisée.
-    RegardsCitoyen à créer le site www.nosdeputes.fr qui fait un synthèse globale de ce que nous mis à disposition l'état, et y éffectue une analyse plus étendue.
-    Le site www.NosDeputes.fr met les données qu'ils ont extrait des différent site webs également à disposition via un API (Application Programming Interface).
+    RegardsCitoyen à créer le site www.nosdeputes.fr et www.nossenateurs.fr sont des aggrégations des sites officiels du gouvernement (voir plus haut) et fait une synthèse globale de ce que nous est mis à disposition par l'état. 
+    RegardsCitoyens.org met a disposition des citoyens, un accès à sa base de donnée via un API (Application Programming Interface).
 
     Le module powershell RegardsCitoyenPS ce base sur l'API mis à disposition par RegardsCitoyen, sauf pour la liste des cmdlets suivantes:
-    -> N/A
+    -> Get-RCOrdreDuJour
 
 EXAMPLES
-    #En premier lieu il faut importer le module:
+    #En premier lieux il faut importer le module:
 
     Import-Module RegardsCitoyenPS
 
     #Le module met à disposition un ensemble de commands (appelées cmdlets) qui permet de récuperer et de travailler sur les données.
-    La liste est actuellement composé de 11 cmdlet:
+    La liste est actuellement composé des cmdlet suivantes:
 
     get-command -Module RegardsCitoyenPS | select Name,version
 
@@ -41,7 +39,12 @@ EXAMPLES
     Invoke-RCRecherche                0.5.7
 
 
-    #Retourne la liste des députes actuellement en mandat
+    Les cmdlets du module RegardsCitoyenPS sont facile à reconnaitre car elle contiennent tous les prefix "RC"
+     exemple:Get-RCDepute ou encore Get-RCGroupePolitique
+
+    Afin de retourner les valeurs, il suffit d'appeler une des commandes du module (listé plus haut)
+
+    #Afin de retourner la liste des députes actuellement en mandat:
     Get-RCDepute
 
 
@@ -86,7 +89,7 @@ EXAMPLES
         (...)
 
 
-    #Retourne la liste complete de tous les groupes politique Français existant actuellement.
+    #Afin de retourner la liste complete de tous les groupes politique Français existant actuellement:
     Get-RCGroupePolitique
 
 
@@ -112,9 +115,11 @@ EXAMPLES
 
         (...)
 
-    Get-RCDossier
+   
 
-    #Retourne les dossiers qui sont (ou ont été) débatus au parlement.
+    #Afin de retourner tous les dossiers qui sont (ou ont été) débatus au parlement.
+
+     Get-RCDossier
 
         id              : 2072
         Titre           : Accès à l'eau
@@ -148,8 +153,8 @@ EXAMPLES
 
         (...)
 
-        Etant donnée qu'un dossier implique beaucoup de sous objets, et afin de réduire l'impact sur la bande passante,
-        pas toutes les données sont immédiatement disponible via la recherche simple.
+        Etant donnée qu'un dossier implique beaucoup de sous objets, et afin de réduire l'impact sur la bande passante lors du téléchargement de celles-ci,
+        pas toutes les données sont immédiatement disponible via la requête simple.
 
         Afin de récuprer tous les information d'un dossier en particulier il faut utiliser les paramètre -ID et -Full :
 
@@ -166,7 +171,7 @@ EXAMPLES
         Documents       : {Document, Document, Document}
         SousSection     :
 
-        #Il est recommandé de retourner le résultat dans un variable pour un traitement futur:
+        #Il est recommandé de sauvegarder le résultat dans un variable pour un traitement futur:
 
         $Dossier = Get-RCDossier -id 2025 -Full
 
