@@ -12,6 +12,7 @@
         Intervention = "https://www.nosdeputes.fr/api/document/Intervention/"
         Document = "https://www.nosdeputes.fr/api/document/Texteloi/"
         Recherche = "https://www.nosdeputes.fr/recherche/"
+        Agendas = "http://www2.assemblee-nationale.fr/agendas/ics"
     }
     
 } 
