@@ -151,7 +151,7 @@ Function Get-RCDepute {
     526 Huyghe   Sébastien      H 10/25/1969 12:00:00 AM Béthune (Pas-de-Calais)      LR     Nord                      5             43
 
     .NOTES
-        -Version: 1.0
+        -Version: 2.0
         -Author: Stéphane van Gulick 
         -CreationDate: 01/02/2018
         -LastModifiedDate: 01/02/2018
@@ -231,7 +231,20 @@ Function Get-RCDepute {
             foreach ($mail in $entry.emails.email){
                     $Emails += $mail
             }
-            return [Depute]::New($entry.id,$entry.nom_de_famille,$entry.prenom,$entry.groupe_sigle,$entry.date_naissance,$entry.lieu_naissance,$entry.sexe,$entry.nom_circo,$entry.num_circo,$entry.place_en_hemicycle,$entry.mandat_debut,$entry.profession,$entry.twitter,$entry.nb_mandats,$entry.parti_ratt_financier,$autresmandats,$Collaborateurs,$Emails)
+
+            $SitesWeb = @()
+
+            foreach ($siteWeb in $entry.sites_web.site){
+                $SitesWeb +=$siteWeb
+            }
+
+            $Identite = [Identite]::New($entry.nom_de_famille,$entry.prenom,$entry.sexe,$entry.date_naissance,$entry.lieu_naissance,$entry.profession)
+            $IdentitePolitique = [IdentitePolitique]::new($entry.groupe_sigle,$entry.nom_circo,$entry.num_circo,$entry.place_en_hemicycle,$entry.mandat_debut,$Collaborateurs,$entry.parti_ratt_financier,$entry.nb_mandats)
+            
+            $Contact = [Contact]::new($entry.twitter,$Emails,$SitesWeb)
+
+            [Depute]::NewDepute().SetId($entry.id).AddIdentite($Identite).AddContact($Contact).AddIdentitePolitique($IdentitePolitique).AddAutresMandats($autresmandats)
+            #return [Depute]::New($entry.id,$entry.nom_de_famille,$entry.prenom,$entry.groupe_sigle,$entry.date_naissance,$entry.lieu_naissance,$entry.sexe,$entry.nom_circo,$entry.num_circo,$entry.place_en_hemicycle,$entry.mandat_debut,$entry.profession,$entry.twitter,$entry.nb_mandats,$entry.parti_ratt_financier,$autresmandats,$Collaborateurs,$Emails)
             Break;
         }
         "id"{
@@ -322,3 +335,5 @@ Function Get-RCDepute {
 
 
 }
+
+Get-RCDepute -Slug Bertrand-Pancher
