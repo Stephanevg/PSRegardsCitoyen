@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Types>
+  <Type>
+    <Name>Depute</Name>
+    <Members>
+
+        <ScriptProperty>
+            <Name>Prenom</Name>
+            <GetScriptBlock>
+            $this.Identite.Prenom
+            </GetScriptBlock>
+        </ScriptProperty>
+    
+        <ScriptProperty>
+            <Name>Nom</Name>
+            <GetScriptBlock>
+            $this.Identite.nom
+            </GetScriptBlock>
+        </ScriptProperty>
+
+        <ScriptProperty>
+            <Name>DateNaissance</Name>
+            <GetScriptBlock>
+            $this.Identite.DateNaissance
+            </GetScriptBlock>
+        </ScriptProperty>
+
+        <ScriptProperty>
+            <Name>LieuNaissance</Name>
+            <GetScriptBlock>
+            $this.Identite.LieuNaissance
+            </GetScriptBlock>
+        </ScriptProperty>
+
+        <ScriptProperty>
+            <Name>Profession</Name>
+            <GetScriptBlock>
+            $this.Identite.Profession
+            </GetScriptBlock>
+        </ScriptProperty>
+
+      <ScriptProperty>
+        <Name>Groupe</Name>
+        <GetScriptBlock>
+          $this.IdentitePolitique.Groupe
+        </GetScriptBlock>
+      </ScriptProperty>
+      <ScriptProperty>
+        <Name>NomCirconscription</Name>
+        <GetScriptBlock>
+          $this.IdentitePolitique.NomCirconscription
+        </GetScriptBlock>
+      </ScriptProperty>
+      <ScriptProperty>
+        <Name>PlaceHemicylce</Name>
+        <GetScriptBlock>
+          $this.IdentitePolitique.PlaceHemicylce
+        </GetScriptBlock>
+      </ScriptProperty>
+      <ScriptProperty>
+        <Name>Collaborateurs</Name>
+        <GetScriptBlock>
+          $this.IdentitePolitique.Collaborateurs
+        </GetScriptBlock>
+      </ScriptProperty>
+
+    <ScriptProperty>
+        <Name>Twitter</Name>
+        <GetScriptBlock>
+          $this.contact.twitter
+        </GetScriptBlock>
+      </ScriptProperty>
+
+      <ScriptProperty>
+        <Name>Email</Name>
+        <GetScriptBlock>
+          $this.contact.Email
+        </GetScriptBlock>
+      </ScriptProperty>
+
+      <ScriptProperty>
+        <Name>Siteweb</Name>
+        <GetScriptBlock>
+          $this.contact.Siteweb
+        </GetScriptBlock>
+      </ScriptProperty>
+
+    <ScriptProperty>
+        <Name>NombreAutreMandats</Name>
+        <GetScriptBlock>
+          $this.autresmandats.count
+        </GetScriptBlock>
+      </ScriptProperty>
+
+    </Members>
+  </Type>
+</Types>
