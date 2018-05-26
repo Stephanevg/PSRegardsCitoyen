@@ -61,10 +61,10 @@ PowerShellVersion = '5.0'
 ScriptsToProcess = @(".\Classes\LoadClasses.ps1")
 
 # Type files (.ps1xml) to be loaded when importing this module
-# TypesToProcess = @()
+ TypesToProcess = @("RegardsCitoyenPS.Type.ps1xml")
 
 # Format files (.ps1xml) to be loaded when importing this module
-# FormatsToProcess = @()
+FormatsToProcess = @("RegardsCitoyenPS.Format.ps1xml")
 
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
 #NestedModules = @("Classes\Depute.psm1","Classes\GroupePolitique.psm1")

@@ -74,53 +74,99 @@ Class Mandat {
     }
 }
 
-Class Depute{
-    [int]$id
+Class Identite{
     [String]$Nom
     [String]$Prenom
     [Sexe]$Sexe
     [DateTime]$DateNaissance
     [String]$LieuNaissance
+    [String]$Profession
+
+    Identite([String]$Nom,[String]$Prenom,[Sexe]$Sexe,[Datetime]$DateNaissance,[String]$LieuNaissance,[String]$Profession){
+        $this.Nom = $Nom
+        $this.Prenom = $Prenom
+        $this.Sexe = $Sexe
+        $this.DateNaissance = $DateNaissance
+        $this.LieuNaissance = $LieuNaissance
+        $this.Profession = $Profession  
+    }
+}
+
+Class IdentitePolitique{
     [String]$Groupe
     [String]$NomCirconscription
     [int]$numcirco
     [int]$PlaceHemicylce
     [DateTime]$DebutDeMandat
-    [String]$Profession
-    [String]$Twitter
-    [int]$NombreDeMandats
-    [String]$partirattfinancier
-    [Mandat[]]$autresmandats
     [String[]]$Collaborateurs
-    [String[]]$Emails
-   
+    [String]$partirattfinancier
+    [int]$NombreDeMandats
 
-    Depute([int]$id,[String]$Nom,[String]$Prenom,[String]$Groupe){
-        $this.Nom = $Nom
-        $This.Prenom = $Prenom
-        $This.Groupe = $Groupe
-    }
-    Depute([int]$id,[String]$Nom,[String]$Prenom,[String]$Groupe,[DateTime]$DateNaissance,[String]$LieuNaissance,[Sexe]$Sexe,[string]$nomcirco,[int]$numcirco,[int]$PlaceHemicylce,[DateTime]$DebutDeMandat,[String]$Profession,[string]$Twitter,[int]$NbMandats,[string]$partirattfinancier,[Mandat[]]$autresmandats,[string[]]$Collaborateurs,[string[]]$Emails){
-        $this.id = $id
-        $this.Nom = $Nom
-        $This.Prenom = $Prenom
-        $This.Groupe = $Groupe
-        $this.DateNaissance = $DateNaissance
-        $this.LieuNaissance = $LieuNaissance
-        $This.Sexe = $Sexe
-        $this.NomCirconscription = $nomcirco
+    IdentitePolitique([String]$Groupe,[String]$NomCirconscription,[int]$numcirco,[int]$PlaceHemicylce,[DateTime]$DebutDeMandat,[String[]]$Collaborateurs,[String]$partirattfinancier,[int]$NombreDeMandats){
+        $this.Groupe = $Groupe
+        $this.NomCirconscription = $NomCirconscription
         $this.numcirco = $numcirco
         $this.PlaceHemicylce = $PlaceHemicylce
-        $this.Profession = $Profession
-        $This.Twitter = $Twitter
         $this.DebutDeMandat = $DebutDeMandat
-        $this.NombreDeMandats = $NbMandats
-        $this.partirattfinancier = $partirattfinancier
-        $this.autresmandats = $autresmandats
         $this.Collaborateurs = $Collaborateurs
-        $this.Emails = $Emails
-
+        $this.partirattfinancier = $partirattfinancier
+        $this.NombreDeMandats = $NombreDeMandats
     }
+}
+
+Class Contact {
+    [String]$Twitter
+    [String[]]$Email
+    [String[]]$Siteweb
+
+    Contact ([String]$Twitter,[String[]]$Email,[String[]]$Siteweb){
+        $this.Twitter = $Twitter
+        $this.Email = $Email
+        $this.Siteweb = $Siteweb
+    }
+}
+
+
+Class Depute{
+    [int]$id
+    [Identite]$Identite
+    [IdentitePolitique]$IdentitePolitique
+    [Contact]$Contact
+    [Mandat[]]$autresmandats
+    
+
+    static [depute] NewDepute (){
+        return [Depute]::New()
+    }
+
+    [Depute]SetId([int]$Id){
+        $this.id = $id
+        return $this
+    }
+
+    [Depute] AddIdentite([Identite]$Identite){
+        $this.Identite = $Identite
+        return $this
+    }
+
+    [Depute] AddIdentitePolitique([IdentitePolitique]$IdentitePolitique){
+        $this.IdentitePolitique = $IdentitePolitique
+        return $this
+    }
+
+    [Depute] AddContact([Contact]$Contact){
+        $this.contact = $Contact
+        return $this
+    }
+
+    [Depute] AddAutresMandats([Mandat[]]$AutresMandats){
+        $this.autresmandats = $AutresMandats
+        return $this
+    }
+
+    
+    
+    
 }
 
 Class Synthese{
