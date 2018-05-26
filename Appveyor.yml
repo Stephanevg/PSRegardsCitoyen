@@ -10,13 +10,15 @@ install:
 
     Install-Module -Name PSScriptAnalyzer -Force
 
-    Install-Module -Name Pester -Force
+    Install-Module -Name -verbose Pester -Force
 build: off
 test_script:
 - ps: >-
     import-module pester
+    start-sleep -seconds 2
     Get-Module Pester
     Get-Module RegardsCitoyenPS
+    write-verbose "invoking pester"
     $res = Invoke-Pester -Path ".\Tests" -OutputFormat NUnitXml -OutputFile TestsResults.xml -PassThru
 
     (New-Object 'System.Net.WebClient').UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\TestsResults.xml))
