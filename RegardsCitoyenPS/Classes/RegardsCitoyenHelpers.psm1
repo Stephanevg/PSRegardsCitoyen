@@ -159,7 +159,7 @@ Class Depute{
         return $this
     }
 
-    [Depute] AddAutresMandats([Mandat]$AutresMandats){
+    [Depute] AddAutresMandats([Mandat[]]$AutresMandats){
         $this.autresmandats = $AutresMandats
         return $this
     }

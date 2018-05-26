@@ -80,36 +80,6 @@
                 </TableRowEntries>
             </TableControl>
         </View>
-        <View>
-            <Name>Depute</Name>
-            <ViewSelectedBy>
-                <SelectionSetName>DeputeTypes</SelectionSetName>
-            </ViewSelectedBy>
-            
-            <ListControl>
-                <ListEntries>
-                     <ListEntry>
-                        <ListItems>
-                            <ListItem>
-                                <PropertyName>Id</PropertyName>
-                            </ListItem>
-                        </ListItems>
-                    </ListEntry>
-                    <ListEntry>
-                        <EntrySelectedBy>
-                            <TypeName>Depute</TypeName>
-                        </EntrySelectedBy>
-                        <ListItems>
-                            <ListItem>
-                                <PropertyName>id</PropertyName>
-                            </ListItem>
-                            <ListItem>
-                                <PropertyName>nom</PropertyName>
-                            </ListItem>
-                        </ListItems>
-                    </ListEntry>
-                </ListEntries>
-            </ListControl>
-        </View>
+
     </ViewDefinitions>
 </Configuration>
