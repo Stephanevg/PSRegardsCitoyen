@@ -10,9 +10,9 @@
 
 # Introduction
 
-RegardsCitoyenPS est un projet qui permet de fournir à tout citoyen, la possibilité de rechercher des données de la vie politique Française en utilisant Windows PowerShell par le biais de l'API RegardsCitoyen.
+RegardsCitoyensPS est un projet qui permet de fournir à tout citoyen, la possibilité de rechercher des données de la vie politique Française en utilisant Windows PowerShell par le biais de l'API RegardsCitoyen.
 
-(Ce projet est une initiative personnel, et n'engage en rien RegardsCitoyens.)
+(Ce projet est une initiative personnelle, et n'engage en rien RegardsCitoyens.)
 
 ## Installation
 
@@ -49,7 +49,7 @@ Function        Invoke-RCRecherche                                 0.6.2.0    Re
 
 ```
 
-Comme vous povez le voir, toutes commandes (appelées Cmdlets) sont préfixes des lettres "RC", qui est l'abréviation de "RegardsCitoyen.
+Comme vous povez le voir, toutes les commandes (appelées Cmdlets) sont des préfixes des lettres "RC", qui est l'abréviation de "RegardsCitoyens".
 
 ### Trouver de l'aide sur une commande en particulier:
 
@@ -59,7 +59,7 @@ Get-Help <Nom-de-commande>
 
 ```
 
-Par exemple, afin d'obtenir de l'aide sur le fonctionnement de `Get-RCDepute`, il suffit de tapper: 
+Par exemple, afin d'obtenir de l'aide sur le fonctionnement de `Get-RCDepute`, il suffit de taper: 
 
 ```Powershell
 
@@ -83,7 +83,7 @@ Get-Help Get-RCDepute -Examples
 
 ```
 
-## Decouverte du module RegardsCitoyenPS
+## Découverte du module RegardsCitoyensPS
 
 ### Lister tous les députés actuellement en mandat
 
@@ -93,7 +93,7 @@ Get-RCDepute
 
 ```
 
-Cette commande retournera un résultat similaire à ceci:
+Cette commande donnera un résultat similaire à ceci:
 
 ``` PowerShell
 
@@ -141,7 +141,7 @@ Cette commande retournera un résultat similaire à ceci:
 ```
 
 
-### Avoir la liste de tous les groupe politiques Français
+### Avoir la liste de tous les groupes politiques Français
 
 ```Powershell
 
@@ -149,7 +149,7 @@ Get-RCGroupPolitique
 
 ```
 
-### Avoir la liste de tous les députés membre d'un groupe politiques Français bien précis
+### Avoir la liste de tous les députés membre d'un groupe politique Français bien précis
 
 ```Powershell
 
@@ -167,7 +167,7 @@ Get-RCDossier
 
 ```
 
-Afin de faciliter la visualisation, il est conseillerer d'utiliser 'Format-Table'
+Afin de faciliter la visualisation, il est conseillé d'utiliser 'Format-Table'
 
 ```Powershell
 
@@ -176,7 +176,7 @@ Get-RCDossier | Format-Table
 ```
 
 
-### Retourner le detail d'un dossier en particulier (par ID)
+### Obtenir le détail d'un dossier en particulier (par ID)
 
 Par exmemple, ID 167 qui reference le dossier "Confiance dans la vie politique".
 
@@ -184,24 +184,25 @@ Par exmemple, ID 167 qui reference le dossier "Confiance dans la vie politique".
     Get-RCDossier -id 167
 ```
 
-A des fins d'optimisation, pas toutes les données sont directement retournés. Pour avoir accès a toutes les données, il faut utiliser le parametre "-Full"
+A des fins d'optimisation, pas toutes les données sont directement renvoyées. Pour avoir accès a toutes les données, il faut utiliser le parametre "-Full"
 
 ``` PowerShell
     Get-RCDossier -id 167 -Full
 ```
 
-En fonction du dossier, ceci peut durer plus ou moins longtemps. Comme le dossier concernant "la confiance dans la vie politique" à été très discuté, il y a eu beaucoup de documents / interventions produits, venant de beacoup d'intervenants (députés) different. Donc il sera un peu long à charger.
+En fonction du dossier, ceci peut durer plus ou moins longtemps. Comme le dossier concernant "la confiance dans la vie politique" à été très discuté, il y a eu beaucoup de documents / interventions produits, venant de beacoup d'intervenants (députés) differents. Donc il sera un peu long à charger.
 
 # Liens
 
 |Site|Description|
 |---|---|
-| [PowerShellDistrict.com](http://www.powershelldistrict.com/introduction-regardscitoyenps) | Blog de l'auteur (Stéphane van Gulick) contenant des details techniques sur le projet RegardsCitoyenPS |
+| [PowerShellDistrict.com](http://www.powershelldistrict.com/introduction-regardscitoyenps) | Blog de l'auteur (Stéphane van Gulick) contenant des details techniques sur le projet RegardsCitoyensPS |
 |[Assemblee-Nationale.fr](http://www.assemblee-nationale.fr/)| Site officiel de l'assemblée Nationale |
 |[Senat.fr](http://www.senat.fr/)| Site officiel de du sénat |
-|[RegardsCitoyens.Org](http://www.regardscitoyens.org/)| Site officiel de Regards Citoyen |
+|[RegardsCitoyens.Org](http://www.regardscitoyens.org/)| Site officiel de Regards Citoyens |
 |[Nosdeputes.fr](http://www.nosdeptues.fr/)| Site officiel de "nosdéputes.fr" |
-|[Page Github de Nos députes](https://github.com/regardscitoyens/nosdeputes.fr/blob/master/doc/api.md)| Page github expliquant le fonctionnement de l'API de RegardsCitoyen.org  |
+|[Page Github de Nos députes](https://github.com/regardscitoyens/nosdeputes.fr/blob/master/doc/api.md)| Page github expliquant le fonctionnement de l'API de RegardsCitoyens
+.org  |
 | | |
 ## Tâches
 
@@ -222,7 +223,7 @@ En fonction du dossier, ceci peut durer plus ou moins longtemps. Comme le dossie
     - [X] Creer Class Organisme
     - [X] Methode [Depute] GetMembres() 
     - [ ] Methode [Depute] GetPresident() 
-        --> CEci va nécessité la création d'une class 'Membre' qui hériterais de [Depute] avec les propriétés supp suivants:
+        --> CEci va nécessiter la création d'une classe 'Membre' qui hériterai de [Depute] avec les propriétés supp suivants:
             --> fonction
             --> Debut fonction
 - [X] Get-RCOrganismeExtraParlementaire
